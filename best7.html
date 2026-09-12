@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja" data-site-mode="public">
+<head><script src="assets/js/zip-data.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>節別ベスト7</title>
+<link rel="stylesheet" href="assets/css/common.css?v=20260817-best7-v633">
+<link rel="stylesheet" href="assets/css/best7.css?v=20260817-best7-v633">
+<link rel="stylesheet" href="assets/css/appearance.css?v=20260912b"><script src="assets/js/appearance.js?v=20260912b"></script></head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="index.html">EntitySoccer Analytics</a><nav class="site-nav"><a href="matches.html">試合一覧</a><a href="players.html">選手一覧</a><a href="statistics.html">通算</a><a href="best7.html">ベスト7</a><a href="team-simulator.html">チーム分け</a><a href="legacy.html">旧式解析</a></nav></div></header>
+<main class="page best7-page">
+  <div class="best7-title-row">
+    <div><span class="best7-eyebrow">MATCHDAY BEST SEVEN</span><h1>節別ベスト7</h1><p class="subtle">同日付IDの試合を1節として、ポジション別の平均採点から選出します。</p></div>
+    <div class="best7-rule-chip">選出資格：同一POS 2試合以上</div>
+  </div>
+
+  <section class="best7-toolbar">
+    <button id="prevDay" class="best7-nav-button" type="button">← 前の節</button>
+    <div class="best7-day-picker">
+      <label for="daySelect">開催日</label>
+      <select id="daySelect"></select>
+    </div>
+    <button id="nextDay" class="best7-nav-button" type="button">次の節 →</button>
+  </section>
+
+  <section class="best7-summary">
+    <div><span>節</span><b id="sectionDate">—</b><small id="sectionGames">—</small></div>
+    <div><span>フォーメーション</span><b id="formation">1-2-2-2</b><small>GK-DF-MF-FW</small></div>
+    <div><span>選出基準</span><b>平均採点</b><small>同一選手の重複なし</small></div>
+  </section>
+
+  <div id="status" class="best7-status">読み込み中...</div>
+
+  <section class="best7-main">
+    <div class="best7-pitch-wrap">
+      <div class="best7-pitch" id="best7Pitch">
+        <div class="pitch-line half"></div>
+        <div class="pitch-circle"></div>
+        <div class="pitch-box top"></div>
+        <div class="pitch-box bottom"></div>
+        <div class="pitch-goal top"></div>
+        <div class="pitch-goal bottom"></div>
+        <div id="fwLine" class="best7-line line-fw"></div>
+        <div id="mfLine" class="best7-line line-mf"></div>
+        <div id="dfLine" class="best7-line line-df"></div>
+        <div id="gkLine" class="best7-line line-gk"></div>
+      </div>
+    </div>
+
+    <aside class="best7-side">
+      <section class="best7-panel">
+        <h2>選考結果</h2>
+        <div id="selectionReason" class="selection-reason"></div>
+      </section>
+      <section class="best7-panel">
+        <h2>選出メンバー</h2>
+        <div id="selectedList" class="selected-list"></div>
+      </section>
+    </aside>
+  </section>
+
+  <section class="best7-panel best7-candidates-panel">
+    <div class="panel-heading-row"><div><h2>候補一覧</h2><p>そのポジションで2試合以上出場した選手のみ。</p></div><span>平均採点順</span></div>
+    <div id="candidateColumns" class="candidate-columns"></div>
+  </section>
+</main>
+<script src="assets/js/best7.js?v=20260817-best7-v633"></script>
+</body></html>

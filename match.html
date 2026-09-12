@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ja" data-public-match="true" data-site-mode="public">
+<head><script src="assets/js/zip-data.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EntitySoccer Match Tracking</title>
+  <link rel="stylesheet" href="assets/css/match.css?v=20260823-review-v3">
+  <link rel="stylesheet" href="assets/css/play-sequence-review.css?v=20260906-xg-shot-lane-v1">
+<link rel="stylesheet" href="assets/css/appearance.css?v=20260912b"><script src="assets/js/appearance.js?v=20260912b"></script></head>
+<body>
+<header class="topbar"><h1>EntitySoccer Match Tracking</h1><a href="matches.html">← 試合一覧</a></header>
+<div id="status" class="status">試合データを読み込んでいます…</div>
+<div id="app" class="page" hidden>
+  <nav class="match-main-tabs" aria-label="試合詳細表示">
+    <button type="button" data-main-tab="stats" class="active">試合スタッツ</button>
+    <button type="button" data-main-tab="replay">リプレイ</button>
+
+  </nav>
+
+  <div class="match-tab-panel" data-main-panel="replay" hidden>
+  <section class="card control-card">
+    <div class="scoreline"><span class="west">WEST</span><span id="score">0 - 0</span><span class="east">EAST</span></div>
+    <div class="meta"><span class="pill" id="gameId"></span><span class="pill" id="category"></span><span class="pill" id="half">前半</span></div>
+    <div class="toolbar">
+      <button id="play">再生</button><button id="pause">停止</button><button id="start">開始</button><button id="prev">前イベント</button><button id="next">次イベント</button>
+      <label>速度 <select id="speed"><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="1.5">1.5x</option><option value="2">2x</option><option value="4">4x</option></select></label>
+      <span class="clock" id="clock">00:00</span>
+    </div>
+    <input id="range" class="range" type="range" min="0" max="1" step="0.01" value="0">
+  </section>
+
+  <div class="match-layout">
+    <main class="card field-card">
+      <div id="field" class="field" aria-label="試合トラッキングフィールド"><div id="intervalCue" class="interval-cue" hidden></div></div>
+    </main>
+    <aside class="card detail-card">
+      <div id="detailType" class="detail-type">現在のイベント</div>
+      <div id="detailTime" class="detail-time">00:00</div>
+      <h2 id="detailTitle" class="detail-title">試合開始</h2>
+      <div id="detailSubtitle" class="detail-subtitle"></div>
+      <div id="detailMetrics" class="detail-metrics"></div>
+      <section id="goalCourseSection" class="course-section" hidden>
+        <h3>シュートコース</h3>
+        <div class="goal-mouth-label">キッカーからゴールを見た正面</div>
+        <div class="goal-mouth">
+          <div class="goal-mouth-grid goal-mouth-grid-v1"></div><div class="goal-mouth-grid goal-mouth-grid-v2"></div>
+          <div class="goal-mouth-grid goal-mouth-grid-h1"></div><div class="goal-mouth-grid goal-mouth-grid-h2"></div>
+          <div id="goalCoursePoint" class="goal-course-point"></div>
+        </div>
+        <div id="goalCourseName" class="goal-course-name"></div>
+        <div id="goalSize" class="goal-size"></div>
+      </section>
+    </aside>
+  </div>
+
+  <section class="card spatial-card">
+    <div class="spatial-head">
+      <div>
+        <h2>位置データ</h2>
+        <p class="muted">通常プレー中の座標から、試合全体のヒートマップと平均位置を表示します。</p>
+      </div>
+      <div class="spatial-toggles">
+        <label><input id="heatmapToggle" type="checkbox"> ヒートマップ</label>
+        <label><input id="averageToggle" type="checkbox"> 平均位置</label>
+      </div>
+    </div>
+    <div id="playerSpatialControls" class="spatial-team-grid"></div>
+  </section>
+
+  <section class="card momentum-card">
+    <div class="momentum-head"><div><h2>マッチモメンタム</h2><p class="muted">保持側の「次の10秒間の得点期待度」を位置・前進・スペースから疑似算出します。</p></div><strong id="momentumValue">中立</strong></div>
+    <div class="momentum-dominance" aria-label="試合全体の攻撃優勢度">
+      <div class="momentum-dominance-title">試合全体の攻撃優勢度</div>
+      <div class="momentum-dominance-row">
+        <b class="west">W <span id="momentumDominanceWestValue">50%</span></b>
+        <div class="momentum-dominance-track"><span id="momentumDominanceWest" class="dominance-west"></span><span id="momentumDominanceEast" class="dominance-east"></span></div>
+        <b class="east"><span id="momentumDominanceEastValue">50%</span> E</b>
+      </div>
+    </div>
+    <div class="momentum-labels"><span class="west">WEST</span><span>ゴール位置をクリックすると演出へ移動</span><span class="east">EAST</span></div>
+    <svg id="momentumChart" class="momentum-chart" viewBox="0 0 1000 210" preserveAspectRatio="none" aria-label="マッチモメンタム"></svg>
+  </section>
+
+  </div>
+
+  <div class="match-tab-panel" data-main-panel="stats">
+    <section class="card broadcast-stats-card">
+      <div id="statsBroadcast" class="broadcast-stats"><div class="seq-empty">試合スタッツを読み込んでいます…</div></div>
+    </section>
+    <section class="card match-ai-match-review-card">
+      <div class="match-ai-review-head"><div><h2>試合評</h2></div><span id="matchAiMatchReviewStatus" class="pill">評論未生成</span></div>
+      <div id="matchAiMatchReview" class="match-ai-match-review"><div class="seq-empty">試合評を読み込んでいます…</div></div>
+    </section>
+    <section class="card match-ai-review-card">
+      <div class="match-ai-review-head"><div><h2>選手評論</h2></div><span id="matchAiReviewStatus" class="pill">評論未生成</span></div>
+      <div id="matchAiReviews" class="match-ai-review-grid"><div class="seq-empty">評論を読み込んでいます…</div></div>
+    </section>
+  </div>
+
+  <div class="match-tab-panel" data-main-panel="logs" hidden>
+  <section class="card log-card">
+    <div class="log-subtabs" role="tablist">
+      <button type="button" class="active" data-log-tab="events">イベント</button>
+      <button type="button" data-log-tab="sequences">プレーシーケンス</button>
+      <button type="button" data-log-tab="audit">監査</button>
+    </div>
+    <div class="log-panel" data-log-panel="events">
+      <div class="log-head"><h2>イベントログ</h2><span class="muted">クリックすると該当時刻へ移動します。</span></div>
+      <div class="event-table-wrap">
+        <table class="event-table"><thead><tr><th>時刻</th><th>種類</th><th>選手</th><th>内容</th></tr></thead><tbody id="events"></tbody></table>
+      </div>
+    </div>
+    <div class="log-panel" data-log-panel="sequences" hidden>
+      <div class="log-head"><h2>プレーシーケンス</h2><span class="muted">表示順は保持→シュート→セーブ/ブロックの因果順です。</span></div>
+      <div id="sequenceLogPanel" class="sequence-log-panel"></div>
+    </div>
+    <div class="log-panel" data-log-panel="audit" hidden>
+      <div class="log-head"><h2>解析監査</h2><span class="muted">生ログと解析の対応を確認します。</span></div>
+      <div id="analysisAuditLogPanel" class="audit-panel"></div>
+    </div>
+  </section>
+  </div>
+</div>
+<script src="assets/js/match-load-guard.js?v=20260815-v611-quality"></script>
+<script type="module" src="assets/js/match-viewer.js?v=20260815-v611-quality"></script>
+<script type="module" src="assets/js/play-sequence-review.js?v=20260912b"></script>
+<script type="module" src="assets/js/match-ai-review.js?v=20260826-match-review-v1"></script>
+
+<div id="ratingDetailModal" class="rating-detail-modal" hidden>
+  <div class="rating-detail-backdrop" data-rating-close></div>
+  <section class="rating-detail-card" role="dialog" aria-modal="true" aria-labelledby="ratingDetailTitle">
+    <button class="rating-detail-close" type="button" data-rating-close aria-label="閉じる">×</button>
+    <div id="ratingDetailBody"></div>
+  </section>
+</div>
+
+</body>
+</html>

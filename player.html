@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja" data-site-mode="public">
+<head><script src="assets/js/zip-data.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>選手詳細</title>
+  <link rel="stylesheet" href="assets/css/stats-pages.css?v=20260822-coverstyle-v4">
+<link rel="stylesheet" href="assets/css/appearance.css?v=20260912b"><script src="assets/js/appearance.js?v=20260912b"></script></head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="index.html">EntitySoccer Analytics</a><nav class="site-nav"><a href="matches.html">試合一覧</a><a href="players.html">選手一覧</a><a href="statistics.html">通算</a><a href="best7.html">ベスト7</a><a href="team-simulator.html">チーム分け</a><a href="legacy.html">旧式解析</a></nav></div></header>
+<main class="page">
+  <div class="player-title"><span id="profileSkin"></span><h1 id="playerName">選手詳細</h1><span id="aliases" class="aliases"></span></div>
+
+  <div class="tabs" id="categoryTabs"><button class="tab active" data-category="official">通常通算</button><button class="tab" data-category="exhibition">EX</button><button class="tab" data-category="all">全試合</button></div>
+
+  <div class="player-view-tabs" id="playerViewTabs">
+    <button class="player-view-tab active" data-view="ability">選手能力</button>
+    <button class="player-view-tab" data-view="stats">試合履歴・スタッツ</button>
+    
+  </div>
+  <p id="status" class="subtle">読み込み中...</p>
+  <section id="abilityView" class="player-view">
+    <section class="player-card-section player-card-section-wide">
+      <div class="player-card-section-head">
+        <div>
+          <h2>基礎能力</h2>
+          <p class="subtle">ポジション別の出場実績から算出。タブで切り替えて確認します。</p>
+        </div>
+      </div>
+      <div id="positionCardTabs" class="position-card-tabs"></div>
+      <div id="positionCardHost"></div>
+      <div class="ability-notes ability-notes-card"><b>能力の見方</b>
+        <span><strong>パス</strong>：成功を中心に、失敗を軽く減点し、KP・アシストを補助評価。ポジションごとのパス機会差を補正します。</span>
+        <span><strong>シュート</strong>：枠内シュートを中心に、枠外を軽く減点し、ゴールとxGの差を補助評価。ポジションごとのシュート機会差を補正します。</span>
+        <span><strong>ドリブル</strong>：成功数を中心に、失敗を軽く減点。ポジション補正は行いません。</span>
+        <span><strong>タックル</strong>：保持解除数を中心に、失敗を小さく減点。量・総合実績を見る能力で、成功率重視の「デュエル○」とは分けて評価します。</span>
+        <span><strong>カット/ブロック</strong>：FPはパスカット・パスブロック・シュートブロックの阻止量。得意分野は「インターセプター」「鉄壁」で表します。</span>
+        <span><strong>セーブ</strong>：GKのみ。1試合あたりのセーブ数をGK専用基準で評価します。</span>
+        <span><strong>積極性</strong>：FPは走行距離を中心にタッチ数を補助評価。GKは走行距離の専用基準です。</span>
+        <span class="ability-confidence-note"><strong>能力値</strong>：1試合平均の実績 → ポジション機会補正 → 固定基準で算出。開催数×2を100%信頼ラインとし、少数試合は50へ寄せます。</span>
+        <span class="ability-confidence-note"><strong>特性</strong>：基礎能力と重複する項目は質・割合・状況を重視し、最低試行数を満たした場合のみ判定します。プレースタイルは強弱ではなくプレー構成や位置傾向を表します。</span>
+      </div>
+    </section>
+  </section>
+  <section id="statsView" class="player-view" hidden>
+    <section class="filter-panel"><div class="filter-heading">集計条件</div>
+      <div class="position-filter-row"><span class="filter-title inline-title">ポジション</span><div id="positionChecks" class="check-list">
+      <label class="filter-check"><input type="checkbox" value="GK" checked>GK</label><label class="filter-check"><input type="checkbox" value="DF" checked>DF</label><label class="filter-check"><input type="checkbox" value="MF" checked>MF</label><label class="filter-check"><input type="checkbox" value="FW" checked>FW</label></div>
+      <div class="mini-actions"><button id="positionAll" class="mini-button">全選択</button><button id="positionFP" class="mini-button">FPのみ</button><button id="positionNone" class="mini-button">解除</button></div></div>
+      <div class="filters flat-filters"><div class="field"><label for="from">開始日</label><input id="from" type="date"></div><div class="field"><label for="to">終了日</label><input id="to" type="date"></div><button id="resetPeriod" class="button">期間リセット</button><div class="field grow"><span class="filter-title">プリセット</span><div id="presetList" class="preset-list"></div></div></div>
+    </section>
+    <section class="player-summary"><div id="overview" class="overview compact-overview"></div></section>
+
+    <section class="section player-heatmap-section">
+      <div class="heatmap-detail-head">
+        <div>
+          <h2>プレーエリア</h2>
+          <p class="subtle">選択中の集計条件に対するポジション別ヒートマップ。DF / MF / FWは別々に表示します。</p>
+        </div>
+      </div>
+      <div id="statsHeatmaps" class="fp-heatmap-grid detailed-heatmap-grid"></div>
+    </section>
+    <section class="section"><h2>試合履歴とスタッツ</h2><p class="subtle">横にスクロールして全項目を確認できます。平均は記録のある試合を対象にし、不明は「—」で表示します。</p><div class="table-wrap"><table><thead><tr><th>項目</th><th class="num">累計</th><th class="num">1試合平均</th><th class="num">率・内訳</th></tr></thead><tbody id="statRows"></tbody></table></div></section>
+  </section>
+  <section id="matchesView" class="player-view" hidden><section class="section"><h2>試合別</h2><div class="table-wrap"><table><thead><tr><th>日付</th><th>試合</th><th>区分</th><th>位置</th><th>プリセット</th><th class="num">採点</th><th class="num">得点</th><th class="num">パス</th><th class="num">走行距離</th></tr></thead><tbody id="matchRows"></tbody></table></div></section></section>
+</main>
+<script src="assets/js/player.js?v=20260912b"></script>
+</body></html>
