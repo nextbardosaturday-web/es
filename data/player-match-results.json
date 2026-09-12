@@ -1,0 +1,1202 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-13T11:20:30.565Z",
+  "matches": [
+    {
+      "gameId": "2026080101",
+      "date": "2026-08-01",
+      "category": "official",
+      "includeOverall": true,
+      "players": [
+        {
+          "playerId": "name:Alpha6000",
+          "recordedName": "Alpha6000",
+          "currentName": "Alpha6000",
+          "aliases": [
+            "Alpha6000"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:Dra_goons",
+          "recordedName": "Dra_goons",
+          "currentName": "Dra_goons",
+          "aliases": [
+            "Dra_goons"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:EmeraldREX91",
+          "recordedName": "EmeraldREX91",
+          "currentName": "EmeraldREX91",
+          "aliases": [
+            "EmeraldREX91"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:lllumination1",
+          "recordedName": "lllumination1",
+          "currentName": "lllumination1",
+          "aliases": [
+            "lllumination1"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:M0nJ",
+          "recordedName": "M0nJ",
+          "currentName": "M0nJ",
+          "aliases": [
+            "M0nJ"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:namako3125",
+          "recordedName": "namako3125",
+          "currentName": "namako3125",
+          "aliases": [
+            "namako3125"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:nextbardo",
+          "recordedName": "nextbardo",
+          "currentName": "nextbardo",
+          "aliases": [
+            "nextbardo"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:Obake_zzz",
+          "recordedName": "Obake_zzz",
+          "currentName": "Obake_zzz",
+          "aliases": [
+            "Obake_zzz"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:Pen4",
+          "recordedName": "Pen4",
+          "currentName": "Pen4",
+          "aliases": [
+            "Pen4"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:Philia_Gray",
+          "recordedName": "Philia_Gray",
+          "currentName": "Philia_Gray",
+          "aliases": [
+            "Philia_Gray"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:pipis_57",
+          "recordedName": "pipis_57",
+          "currentName": "pipis_57",
+          "aliases": [
+            "pipis_57"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:sota2486",
+          "recordedName": "sota2486",
+          "currentName": "sota2486",
+          "aliases": [
+            "sota2486"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:TYPE_NOOB",
+          "recordedName": "TYPE_NOOB",
+          "currentName": "TYPE_NOOB",
+          "aliases": [
+            "TYPE_NOOB"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:xyzen1",
+          "recordedName": "xyzen1",
+          "currentName": "xyzen1",
+          "aliases": [
+            "xyzen1"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 2,
+          "result": "draw",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "gameId": "2026080102",
+      "date": "2026-08-01",
+      "category": "official",
+      "includeOverall": true,
+      "players": [
+        {
+          "playerId": "name:Alpha6000",
+          "recordedName": "Alpha6000",
+          "currentName": "Alpha6000",
+          "aliases": [
+            "Alpha6000"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:Dra_goons",
+          "recordedName": "Dra_goons",
+          "currentName": "Dra_goons",
+          "aliases": [
+            "Dra_goons"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:EmeraldREX91",
+          "recordedName": "EmeraldREX91",
+          "currentName": "EmeraldREX91",
+          "aliases": [
+            "EmeraldREX91"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:LagnaKt",
+          "recordedName": "LagnaKt",
+          "currentName": "LagnaKt",
+          "aliases": [
+            "LagnaKt"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:lllumination1",
+          "recordedName": "lllumination1",
+          "currentName": "lllumination1",
+          "aliases": [
+            "lllumination1"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:M0nJ",
+          "recordedName": "M0nJ",
+          "currentName": "M0nJ",
+          "aliases": [
+            "M0nJ"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:namako3125",
+          "recordedName": "namako3125",
+          "currentName": "namako3125",
+          "aliases": [
+            "namako3125"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:nextbardo",
+          "recordedName": "nextbardo",
+          "currentName": "nextbardo",
+          "aliases": [
+            "nextbardo"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:Obake_zzz",
+          "recordedName": "Obake_zzz",
+          "currentName": "Obake_zzz",
+          "aliases": [
+            "Obake_zzz"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:Pen4",
+          "recordedName": "Pen4",
+          "currentName": "Pen4",
+          "aliases": [
+            "Pen4"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:pipis_57",
+          "recordedName": "pipis_57",
+          "currentName": "pipis_57",
+          "aliases": [
+            "pipis_57"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:Rosario20",
+          "recordedName": "Rosario20",
+          "currentName": "Rosario20",
+          "aliases": [
+            "Rosario20"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:sota2486",
+          "recordedName": "sota2486",
+          "currentName": "sota2486",
+          "aliases": [
+            "sota2486"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        },
+        {
+          "playerId": "name:TYPE_NOOB",
+          "recordedName": "TYPE_NOOB",
+          "currentName": "TYPE_NOOB",
+          "aliases": [
+            "TYPE_NOOB"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "result": "draw",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "gameId": "2026080103",
+      "date": "2026-08-01",
+      "category": "official",
+      "includeOverall": true,
+      "players": [
+        {
+          "playerId": "name:Alpha6000",
+          "recordedName": "Alpha6000",
+          "currentName": "Alpha6000",
+          "aliases": [
+            "Alpha6000"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:Dra_goons",
+          "recordedName": "Dra_goons",
+          "currentName": "Dra_goons",
+          "aliases": [
+            "Dra_goons"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:EmeraldREX91",
+          "recordedName": "EmeraldREX91",
+          "currentName": "EmeraldREX91",
+          "aliases": [
+            "EmeraldREX91"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:LagnaKt",
+          "recordedName": "LagnaKt",
+          "currentName": "LagnaKt",
+          "aliases": [
+            "LagnaKt"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:lllumination1",
+          "recordedName": "lllumination1",
+          "currentName": "lllumination1",
+          "aliases": [
+            "lllumination1"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:M0nJ",
+          "recordedName": "M0nJ",
+          "currentName": "M0nJ",
+          "aliases": [
+            "M0nJ"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:namako3125",
+          "recordedName": "namako3125",
+          "currentName": "namako3125",
+          "aliases": [
+            "namako3125"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:nextbardo",
+          "recordedName": "nextbardo",
+          "currentName": "nextbardo",
+          "aliases": [
+            "nextbardo"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:Obake_zzz",
+          "recordedName": "Obake_zzz",
+          "currentName": "Obake_zzz",
+          "aliases": [
+            "Obake_zzz"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:Pen4",
+          "recordedName": "Pen4",
+          "currentName": "Pen4",
+          "aliases": [
+            "Pen4"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:pipis_57",
+          "recordedName": "pipis_57",
+          "currentName": "pipis_57",
+          "aliases": [
+            "pipis_57"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:Rosario20",
+          "recordedName": "Rosario20",
+          "currentName": "Rosario20",
+          "aliases": [
+            "Rosario20"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:sota2486",
+          "recordedName": "sota2486",
+          "currentName": "sota2486",
+          "aliases": [
+            "sota2486"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 2,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:TYPE_NOOB",
+          "recordedName": "TYPE_NOOB",
+          "currentName": "TYPE_NOOB",
+          "aliases": [
+            "TYPE_NOOB"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 2,
+          "goalsAgainst": 3,
+          "result": "loss",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "gameId": "2026080104",
+      "date": "2026-08-01",
+      "category": "official",
+      "includeOverall": true,
+      "players": [
+        {
+          "playerId": "name:Alpha6000",
+          "recordedName": "Alpha6000",
+          "currentName": "Alpha6000",
+          "aliases": [
+            "Alpha6000"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 4,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:Dra_goons",
+          "recordedName": "Dra_goons",
+          "currentName": "Dra_goons",
+          "aliases": [
+            "Dra_goons"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 4,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:EmeraldREX91",
+          "recordedName": "EmeraldREX91",
+          "currentName": "EmeraldREX91",
+          "aliases": [
+            "EmeraldREX91"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 3,
+          "goalsAgainst": 4,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:LagnaKt",
+          "recordedName": "LagnaKt",
+          "currentName": "LagnaKt",
+          "aliases": [
+            "LagnaKt"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 3,
+          "goalsAgainst": 4,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:lllumination1",
+          "recordedName": "lllumination1",
+          "currentName": "lllumination1",
+          "aliases": [
+            "lllumination1"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 4,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:M0nJ",
+          "recordedName": "M0nJ",
+          "currentName": "M0nJ",
+          "aliases": [
+            "M0nJ"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 4,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:namako3125",
+          "recordedName": "namako3125",
+          "currentName": "namako3125",
+          "aliases": [
+            "namako3125"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 3,
+          "goalsAgainst": 4,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:nextbardo",
+          "recordedName": "nextbardo",
+          "currentName": "nextbardo",
+          "aliases": [
+            "nextbardo"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 3,
+          "goalsAgainst": 4,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:Obake_zzz",
+          "recordedName": "Obake_zzz",
+          "currentName": "Obake_zzz",
+          "aliases": [
+            "Obake_zzz"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 4,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:Opanku",
+          "recordedName": "Opanku",
+          "currentName": "Opanku",
+          "aliases": [
+            "Opanku"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 3,
+          "goalsAgainst": 4,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:Pen4",
+          "recordedName": "Pen4",
+          "currentName": "Pen4",
+          "aliases": [
+            "Pen4"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 4,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:Rosario20",
+          "recordedName": "Rosario20",
+          "currentName": "Rosario20",
+          "aliases": [
+            "Rosario20"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 3,
+          "goalsAgainst": 4,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:sota2486",
+          "recordedName": "sota2486",
+          "currentName": "sota2486",
+          "aliases": [
+            "sota2486"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 3,
+          "goalsAgainst": 4,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:TYPE_NOOB",
+          "recordedName": "TYPE_NOOB",
+          "currentName": "TYPE_NOOB",
+          "aliases": [
+            "TYPE_NOOB"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 4,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "gameId": "2026080105",
+      "date": "2026-08-01",
+      "category": "official",
+      "includeOverall": true,
+      "players": [
+        {
+          "playerId": "name:Alpha6000",
+          "recordedName": "Alpha6000",
+          "currentName": "Alpha6000",
+          "aliases": [
+            "Alpha6000"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:Dra_goons",
+          "recordedName": "Dra_goons",
+          "currentName": "Dra_goons",
+          "aliases": [
+            "Dra_goons"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:EmeraldREX91",
+          "recordedName": "EmeraldREX91",
+          "currentName": "EmeraldREX91",
+          "aliases": [
+            "EmeraldREX91"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:LagnaKt",
+          "recordedName": "LagnaKt",
+          "currentName": "LagnaKt",
+          "aliases": [
+            "LagnaKt"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:lllumination1",
+          "recordedName": "lllumination1",
+          "currentName": "lllumination1",
+          "aliases": [
+            "lllumination1"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:M0nJ",
+          "recordedName": "M0nJ",
+          "currentName": "M0nJ",
+          "aliases": [
+            "M0nJ"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:namako3125",
+          "recordedName": "namako3125",
+          "currentName": "namako3125",
+          "aliases": [
+            "namako3125"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:nextbardo",
+          "recordedName": "nextbardo",
+          "currentName": "nextbardo",
+          "aliases": [
+            "nextbardo"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:Obake_zzz",
+          "recordedName": "Obake_zzz",
+          "currentName": "Obake_zzz",
+          "aliases": [
+            "Obake_zzz"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:Opanku",
+          "recordedName": "Opanku",
+          "currentName": "Opanku",
+          "aliases": [
+            "Opanku"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:Pen4",
+          "recordedName": "Pen4",
+          "currentName": "Pen4",
+          "aliases": [
+            "Pen4"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:pipis_57",
+          "recordedName": "pipis_57",
+          "currentName": "pipis_57",
+          "aliases": [
+            "pipis_57"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:sota2486",
+          "recordedName": "sota2486",
+          "currentName": "sota2486",
+          "aliases": [
+            "sota2486"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:TYPE_NOOB",
+          "recordedName": "TYPE_NOOB",
+          "currentName": "TYPE_NOOB",
+          "aliases": [
+            "TYPE_NOOB"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "gameId": "2026080106ex",
+      "date": "2026-08-01",
+      "category": "exhibition",
+      "includeOverall": false,
+      "players": [
+        {
+          "playerId": "name:Dra_goons",
+          "recordedName": "Dra_goons",
+          "currentName": "Dra_goons",
+          "aliases": [
+            "Dra_goons"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:EmeraldREX91",
+          "recordedName": "EmeraldREX91",
+          "currentName": "EmeraldREX91",
+          "aliases": [
+            "EmeraldREX91"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:LagnaKt",
+          "recordedName": "LagnaKt",
+          "currentName": "LagnaKt",
+          "aliases": [
+            "LagnaKt"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:M0nJ",
+          "recordedName": "M0nJ",
+          "currentName": "M0nJ",
+          "aliases": [
+            "M0nJ"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:namako3125",
+          "recordedName": "namako3125",
+          "currentName": "namako3125",
+          "aliases": [
+            "namako3125"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:nextbardo",
+          "recordedName": "nextbardo",
+          "currentName": "nextbardo",
+          "aliases": [
+            "nextbardo"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:Obake_zzz",
+          "recordedName": "Obake_zzz",
+          "currentName": "Obake_zzz",
+          "aliases": [
+            "Obake_zzz"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:Opanku",
+          "recordedName": "Opanku",
+          "currentName": "Opanku",
+          "aliases": [
+            "Opanku"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:Pen4",
+          "recordedName": "Pen4",
+          "currentName": "Pen4",
+          "aliases": [
+            "Pen4"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:pipis_57",
+          "recordedName": "pipis_57",
+          "currentName": "pipis_57",
+          "aliases": [
+            "pipis_57"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        },
+        {
+          "playerId": "name:sota2486",
+          "recordedName": "sota2486",
+          "currentName": "sota2486",
+          "aliases": [
+            "sota2486"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_EAST",
+          "goalsFor": 6,
+          "goalsAgainst": 3,
+          "result": "win",
+          "points": 3
+        },
+        {
+          "playerId": "name:TYPE_NOOB",
+          "recordedName": "TYPE_NOOB",
+          "currentName": "TYPE_NOOB",
+          "aliases": [
+            "TYPE_NOOB"
+          ],
+          "mapped": false,
+          "teamSide": "TEAM_WEST",
+          "goalsFor": 3,
+          "goalsAgainst": 6,
+          "result": "loss",
+          "points": 0
+        }
+      ]
+    }
+  ]
+}

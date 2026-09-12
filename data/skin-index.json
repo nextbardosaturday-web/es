@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "players": {
+    "AL1S_JP": {
+      "identifier": "AL1S_JP",
+      "uuid": "c143aa3ca136453bb3b47bf625a3f3c1",
+      "currentName": "AL1S_JP",
+      "file": "skins/152c4fc4de8755ff38d1a00aa5b4de82a9d7fb6c551826ee3b84e82a5a0af263.png",
+      "updatedAt": "2026-09-11T14:00:45.816Z"
+    },
+    "Alpha6000": {
+      "identifier": "Alpha6000",
+      "uuid": "6b5f025b2ae64f6b85c28feefb86ce0d",
+      "currentName": "Alpha6000",
+      "file": "skins/4a914f4ebf5422e172fd827777b7835537d4097c596dbdbfc08c2ed9fae1f273.png",
+      "updatedAt": "2026-09-11T14:00:46.251Z"
+    },
+    "CharlotteDunoa": {
+      "identifier": "CharlotteDunoa",
+      "uuid": "2c8db78645ab4a70bff6c5034e945b86",
+      "currentName": "CharlotteDunoa",
+      "file": "skins/6ac65b1fd2d7b3dbaeeb702fad5932c4117a1e5f7d7db2531662baecdc48923.png",
+      "updatedAt": "2026-09-11T14:00:46.707Z"
+    },
+    "Dra_goons": {
+      "identifier": "Dra_goons",
+      "uuid": "5204f9ee0f9f43d0963509b0083a61b2",
+      "currentName": "Dra_goons",
+      "file": "skins/2f296e2354d47a1222e6b2defc2157d971a85a78082e5424ec87dfb96d98af64.png",
+      "updatedAt": "2026-09-11T14:00:47.646Z"
+    },
+    "EmeraldREX91": {
+      "identifier": "EmeraldREX91",
+      "uuid": "c18ae83096ab477ea81a450c87b8eabc",
+      "currentName": "EmeraldREX91",
+      "file": "skins/c952af5fa71bb1fe0d16349f5ebb811301689b2631e354f1e0fec1b79147dbdb.png",
+      "updatedAt": "2026-09-11T14:00:50.636Z"
+    },
+    "Flemishnium": {
+      "identifier": "Flemishnium",
+      "uuid": "89b33755bd094c33ad48b3c988e9c090",
+      "currentName": "Flemishnium",
+      "file": "skins/53a567977c19fc7bcf9ba130b9230045b4ff5e756f7d793496b49da6eb06df9e.png",
+      "updatedAt": "2026-09-11T14:00:51.552Z"
+    },
+    "Froux_XD": {
+      "identifier": "Froux_XD",
+      "uuid": "3ab17e630e064cfd874d6b9485f5bdc0",
+      "currentName": "Froux_XD",
+      "file": "skins/5916551a14ba0ae18c79dbab2d787831063546d3935f45324d4e5fcd0d48f88f.png",
+      "updatedAt": "2026-09-11T14:00:52.001Z"
+    },
+    "Girigiri_ikiteru": {
+      "identifier": "Girigiri_ikiteru",
+      "uuid": "03bc5f8051d340d99419c1a96e031563",
+      "currentName": "Girigiri_ikiteru",
+      "file": "skins/5df4b3d6f48d8ec55c27ec28e2efb57001135fcccb3b35f6a6346971423da9f6.png",
+      "updatedAt": "2026-09-11T14:00:52.419Z"
+    },
+    "ItsTANAKATIME": {
+      "identifier": "ItsTANAKATIME",
+      "uuid": "dab8d461181144e590657819016e46d8",
+      "currentName": "ItsTANAKATIME",
+      "file": "skins/b5296da1d1a39ed261bd3f5900d7c26eb826f91a98d2eb7060ac053613b5b5b2.png",
+      "updatedAt": "2026-09-11T14:00:52.823Z"
+    },
+    "Jtype916": {
+      "identifier": "Jtype916",
+      "uuid": "196d5305414b4841973005a15b586666",
+      "currentName": "Jtype916",
+      "file": "skins/4752df19e6655ddc691b03ba06a0231c6c006bf8018ddc8f39e843b117816d60.png",
+      "updatedAt": "2026-09-11T14:00:53.243Z"
+    },
+    "Kisida_": {
+      "identifier": "Kisida_",
+      "uuid": "1457b15fab69468b86dac956f64ae541",
+      "currentName": "Kisida_",
+      "file": "skins/6d659f9411c8b784cd93e8cef1775efe544e9929ad0a2f8f1424f64e2b74de58.png",
+      "updatedAt": "2026-09-11T14:00:53.659Z"
+    },
+    "LagnaKt": {
+      "identifier": "LagnaKt",
+      "uuid": "97bf4ab122634b4284f908e33133faf2",
+      "currentName": "LagnaKt",
+      "file": "skins/f54a9ce49f0e46bd975f66b2004d26543ad2bdbb50ffca7c72f5451d8a5bb130.png",
+      "updatedAt": "2026-09-11T14:00:54.087Z"
+    },
+    "Lemon_55": {
+      "identifier": "Lemon_55",
+      "uuid": "7e13745113d74107854d23eb20f886a6",
+      "currentName": "Lemon_55",
+      "file": "skins/7b1176f929c2a204c02a1b46fd0937f55e4f3c6773da2b4a287e7b45db83731c.png",
+      "updatedAt": "2026-09-11T14:00:54.526Z"
+    },
+    "M0nJ": {
+      "identifier": "M0nJ",
+      "uuid": "14ea66bfbb824a0c9bd2bcf89b876049",
+      "currentName": "M0nJ",
+      "file": "skins/25be1cedf276601f8dd7221c5a66977380467ffda9f7039e652a118262211176.png",
+      "updatedAt": "2026-09-11T14:00:54.962Z"
+    },
+    "Melancrupie": {
+      "identifier": "Melancrupie",
+      "uuid": "8071def1e8be44e4866a18cc254be561",
+      "currentName": "Melancrupie",
+      "file": "skins/48d8431f7911054acb998c26f396dc9d3738ac8f285be07ec80c5abfcd7651af.png",
+      "updatedAt": "2026-09-11T14:00:55.384Z"
+    },
+    "Melbin": {
+      "identifier": "Melbin",
+      "uuid": "297d5b7b4c7545c096893b602f6d8060",
+      "currentName": "Melbin",
+      "file": "skins/1d052ece38a8027fe15ade108e8eb47b03c7f49dccd94d8a5221c068108a73c.png",
+      "updatedAt": "2026-09-11T14:00:55.823Z"
+    },
+    "Miku_Dayo_": {
+      "identifier": "Miku_Dayo_",
+      "uuid": "37c752e81f5540cc871e8bd205a0094c",
+      "currentName": "Miku_Dayo_",
+      "file": "skins/44f7ea75475955032335d5cb7a4191c93a380ea5d26fc988a86a7ad6bac8bc8f.png",
+      "updatedAt": "2026-09-11T14:00:56.964Z"
+    },
+    "Nagase_Futaba": {
+      "identifier": "Nagase_Futaba",
+      "uuid": "794670eaa89648b9a1164740ef4546e8",
+      "currentName": "Nagase_Futaba",
+      "file": "skins/6fb15f06e2cd888304c2bfcc28e2670e24d824a02172ec94e2a8522c71b5f9e.png",
+      "updatedAt": "2026-09-11T14:00:58.301Z"
+    },
+    "Obake_zzz": {
+      "identifier": "Obake_zzz",
+      "uuid": "f51b1265a385453eae0367e1e84e70b8",
+      "currentName": "Obake_zzz",
+      "file": "skins/ff872e1f121f44371ed39b1b8b4f5cc7eda3357714156aa06057cb6e70f3f14.png",
+      "updatedAt": "2026-09-11T14:00:58.748Z"
+    },
+    "Opanku": {
+      "identifier": "Opanku",
+      "uuid": "75350b8d1eab458fac87145322dfa917",
+      "currentName": "Opanku",
+      "file": "skins/a0a33baf311bec0ef4177a2abf58de7622b893cf012ac1222dc1015f35426eed.png",
+      "updatedAt": "2026-09-11T14:00:59.194Z"
+    },
+    "Pen4": {
+      "identifier": "Pen4",
+      "uuid": "c17c7abfb429426ba812fa587a86b9d7",
+      "currentName": "Pen4",
+      "file": "skins/ca9e36d98e11d11840d74b232e34d9dda25953760f34f6ea0e13cb15454464a8.png",
+      "updatedAt": "2026-09-11T14:00:59.626Z"
+    },
+    "Philia_Gray": {
+      "identifier": "Philia_Gray",
+      "uuid": "57431ef65a464d199cc11acfec3dc08a",
+      "currentName": "Philia_Gray",
+      "file": "skins/8dbc78627b5df31e024734f381daa1d80e27e27f86757507323e9bdc56cd0c70.png",
+      "updatedAt": "2026-09-11T14:01:00.103Z"
+    },
+    "Rosario20": {
+      "identifier": "Rosario20",
+      "uuid": "964f2b43b8c14c76b860dd3ed53212a2",
+      "currentName": "Rosario20",
+      "file": "skins/c372a19d27420f6b528c740404bef8c3b183fb55af99be92053445d9e368be09.png",
+      "updatedAt": "2026-09-11T14:01:00.554Z"
+    },
+    "SARASACLIP": {
+      "identifier": "SARASACLIP",
+      "uuid": "48381392c3e44c2099da66d954a9beea",
+      "currentName": "SARASACLIP",
+      "file": "skins/71c6e57ca90cdafd7a1d06b5fafb8c7bc9778addcab71719091fe446209f1ead.png",
+      "updatedAt": "2026-09-11T14:01:01.003Z"
+    },
+    "TYPE_NOOB": {
+      "identifier": "TYPE_NOOB",
+      "uuid": "a05039e76d634a0faa3d883bce8100b7",
+      "currentName": "TYPE_NOOB",
+      "file": "skins/5ee41a5a84f6eea8b7e1550138420e865f45daa52b4ee0d621be653bd37751d2.png",
+      "updatedAt": "2026-09-11T14:01:01.467Z"
+    },
+    "Taikin": {
+      "identifier": "Taikin",
+      "uuid": "0a7e46dc53804a5b9ca0a763ef5fcb4c",
+      "currentName": "Taikin",
+      "file": "skins/9872f0097c0f7ea6780963d542344c5d47c78af5a9e2ceb0f4686d8a8ae82365.png",
+      "updatedAt": "2026-09-11T14:01:01.917Z"
+    },
+    "amalda01": {
+      "identifier": "amalda01",
+      "uuid": "44d923b815af4286ab81fa994771ef54",
+      "currentName": "amalda01",
+      "file": "skins/8694c7785f9b3060c8cd30d2e13835c346373acc6e47129a3181179e433ea7bd.png",
+      "updatedAt": "2026-09-11T14:01:02.394Z"
+    },
+    "cherryspb": {
+      "identifier": "cherryspb",
+      "uuid": "44473c7baa8149b0a21a89a3e70f1b36",
+      "currentName": "cherryspb",
+      "file": "skins/43680bb75a35e677097eb876cb4c7eb93ea4c91aa339a7a15fca13418b6151ca.png",
+      "updatedAt": "2026-09-11T14:01:02.874Z"
+    },
+    "corn_sugar": {
+      "identifier": "corn_sugar",
+      "uuid": "3e7ca7b77a8646b4a5bb3d07f66a2cba",
+      "currentName": "corn_sugar",
+      "file": "skins/7b64a8558632f100dcc590aeb9db2547a4af880c23bd33fac9f37c68cf56510f.png",
+      "updatedAt": "2026-09-11T14:01:03.345Z"
+    },
+    "dashogehoge": {
+      "identifier": "dashogehoge",
+      "uuid": "41f12a2beb2a40b088f23618561206a3",
+      "currentName": "dashogehoge",
+      "file": "skins/1a4af718455d4aab528e7a61f86fa25e6a369d1768dcb13f7df319a713eb810b.png",
+      "updatedAt": "2026-09-11T14:01:03.797Z"
+    },
+    "hachi_18": {
+      "identifier": "hachi_18",
+      "uuid": "37c11aa31e544c6692de8f105bdd6cd4",
+      "currentName": "hachi_18",
+      "file": "skins/20370762fa02e13632c576705e73c0af7a086b9a26b9bc0512cdd7944dc9f60e.png",
+      "updatedAt": "2026-09-11T14:01:04.473Z"
+    },
+    "jamu12": {
+      "identifier": "jamu12",
+      "uuid": "ed607714850f47eebe283dae5817d517",
+      "currentName": "jamu12",
+      "file": "skins/9bd50c0e0dabf6bc4283d05622aba4ac540b4d2d58011939b3e11d44c5394183.png",
+      "updatedAt": "2026-09-11T14:01:04.950Z"
+    },
+    "kinokonan": {
+      "identifier": "kinokonan",
+      "uuid": "25e853983d324e3488a188d801e7d35c",
+      "currentName": "kinokonan",
+      "file": "skins/87c8a8cc4bccad21e4e2c5d8a28e0a8946e7884d20e5034c32e267e5dad74494.png",
+      "updatedAt": "2026-09-11T14:01:05.411Z"
+    },
+    "lllumination1": {
+      "identifier": "lllumination1",
+      "uuid": "e0b38b97e64443fe9250559e0a194919",
+      "currentName": "lllumination1",
+      "file": "skins/6245c9984ec417c3b671795ed1291b8ed49bd11eeb0cb108e480181087739b29.png",
+      "updatedAt": "2026-09-11T14:01:05.883Z"
+    },
+    "masakitoya": {
+      "identifier": "masakitoya",
+      "uuid": "ecc6212d633e4f06a4701f0514812d79",
+      "currentName": "masakitoya",
+      "file": "skins/f9de52820bffbd54fff0dd5c7cdb5a3d84f4206e424683dda10e5d044b4296b7.png",
+      "updatedAt": "2026-09-11T14:01:06.376Z"
+    },
+    "namako3125": {
+      "identifier": "namako3125",
+      "uuid": "54033f5545d14d569d8d33744d888aec",
+      "currentName": "namako3125",
+      "file": "skins/cdfb4c067666428b6ba390ba422fe5f38d77a0ce3221bf215b53e106f3c0b3e9.png",
+      "updatedAt": "2026-09-11T14:01:07.021Z"
+    },
+    "nextbardo": {
+      "identifier": "nextbardo",
+      "uuid": "f9da972557c14a339408b50daccea35d",
+      "currentName": "nextbardo",
+      "file": "skins/4b344f564d54577e6f23cf17ce70fe1bd56dfe714857dd4be29c54298c58cf8a.png",
+      "updatedAt": "2026-09-11T14:01:07.459Z"
+    },
+    "omarupin": {
+      "identifier": "omarupin",
+      "uuid": "634e1202bfeb4b78a56bd6599020f171",
+      "currentName": "omarupin",
+      "file": "skins/466059a732237397fd1e7afd6ab1c864cabf51fd731ba67e541a4fd8dfe4f43.png",
+      "updatedAt": "2026-09-11T14:01:08.204Z"
+    },
+    "pipis_57": {
+      "identifier": "pipis_57",
+      "uuid": "e390b7c8e4a14a678c0db48e025c9ea2",
+      "currentName": "pipis_57",
+      "file": "skins/12204ec2c421e5dd8d12c32b1ca93fd00e27b567b65e6406ab85dbf0ba46632d.png",
+      "updatedAt": "2026-09-11T14:01:08.640Z"
+    },
+    "rlaiy": {
+      "identifier": "rlaiy",
+      "uuid": "0ba13e8ac7694fc5986df4a949c1f25f",
+      "currentName": "rlaiy",
+      "file": "skins/d0ec7c83405bb1863a4a649dc2b298a6c2a98611b68deb34b8442ddc5e152d3f.png",
+      "updatedAt": "2026-09-11T14:01:09.103Z"
+    },
+    "sota2486": {
+      "identifier": "sota2486",
+      "uuid": "c755d08113744cf49801b7e1ab19d947",
+      "currentName": "sota2486",
+      "file": "skins/363085d12f6e10552a60abbe779e200b94bac3e7830f2e80a9d245fcfc753ae2.png",
+      "updatedAt": "2026-09-11T14:01:09.536Z"
+    },
+    "syobonnkun": {
+      "identifier": "syobonnkun",
+      "uuid": "c91dbcd4509b40c19806ec91cd2259a0",
+      "currentName": "syobonnkun",
+      "file": "skins/3a34a74107f82a24aacd901d95e9b1de6bd918b09a684c81a8302b683c0c67ec.png",
+      "updatedAt": "2026-09-11T14:01:09.971Z"
+    },
+    "viocat77": {
+      "identifier": "viocat77",
+      "uuid": "bdbaed134da14a71afaf35710f27663f",
+      "currentName": "viocat77",
+      "file": "skins/8f47b8f6d9db037bde4dd1a475c46cbe63b663728a495030820954b51592732e.png",
+      "updatedAt": "2026-09-11T14:01:10.435Z"
+    },
+    "xyzen1": {
+      "identifier": "xyzen1",
+      "uuid": "14221093e6914272b609a329aa3704e0",
+      "currentName": "xyzen1",
+      "file": "skins/2b483c91306e10418e90af5797ff83dd036d02f48a3537c737492e596e4cd0dc.png",
+      "updatedAt": "2026-09-11T14:01:10.866Z"
+    }
+  },
+  "updatedAt": "2026-09-11T14:01:10.866Z"
+}

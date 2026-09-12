@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 2,
+  "generatedMode": "ai",
+  "players": {
+    "nextbardo": {
+      "text": "複数のポジションを基準以上に経験する万能型だが、最も結果へ結びついているのは前線での起用。自ら運んでシュートへ持ち込み、得点とラストパスの両方で攻撃を完結させる。\n中盤では得点関与を保ちながら広範囲の回収にも顔を出し、最終ラインでは読みと対人対応を生かして守備から持ち上がる。最後尾でもシュート対応を担えるため、試合ごとに不足する役割を埋められる。\n器用さを各所へ散らすより、攻撃の中心に置いて得点と創造性を引き出した時に持ち味が最大化される選手だ。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "LagnaKt": {
+      "text": "主戦場は最終ラインで、相手の狙いを読むカットと球際の対応を軸に守備を組み立てる。奪った後は自ら運ぶ力もあり、守備だけでプレーを切らず前進までつなげられる。\n中盤に入ると持ち運びの比重が増し、得点とアシストの両面で攻撃への影響が大きくなる。守備者としての視野を残したまま前へ出られるため、後方と前線を結ぶ役割に適性がある。\n長く務める守備では安定をもたらし、中盤では攻撃性が前面に出る。試合で求める役割に応じて両方の顔を使い分けられる。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "Alpha6000": {
+      "text": "前線を主戦場とし、積極的にシュートへ入りながら得点を重ねるフィニッシャー。単独で運ぶだけでなく味方の得点も演出でき、攻撃の出口として幅のある働きを見せる。\n中盤では前線ほど結果が安定せず、配球や球際を含めて試合を整える役割には課題が残る。一方、最後尾ではシュート対応を中心に堅実な働きができる。\n複数の役割を担えるが、最も長所が明確なのはゴールへ向かう局面。攻撃に集中させた時の得点力を軸に、必要に応じて中盤や最後尾も任せられる選手だ。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "Obake_zzz": {
+      "text": "ほぼ一貫してゴールを守る専門性の高い守護者。シュートを受ける機会が多い中でもセーブを積み重ね、最後方で試合を支える。\nボールを保持した後は大きく展開する場面が多く、守備から攻撃へ切り替える最初の役割も担う。ただし配球の安定度には波があり、再び相手へ攻撃機会を渡すこともある。\nシュート対応そのものに明確な価値があり、守備陣との連係とセーブ後の展開まで整えば、ゴールを守った成果を次の攻撃へつなげられる。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "namako3125": {
+      "text": "最終ラインを主戦場とし、鋭い読みでパスを断ちながら球際でも奪い切る守備者。回収後のパスと持ち出しも安定しており、守備から攻撃へ滑らかに移行できる。\n中盤では運ぶ力が一段と前面に出て、味方の得点を導く配球にも関与する。守備の感覚を生かして相手の攻撃を早い位置で止められる点も役割に合っている。\n特に後方での継続的な働きがチームの土台となる。奪取、運搬、配球を一人でつなげられる総合型だ。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "lllumination1": {
+      "text": "中盤から積極的にゴールへ向かい、得点力で違いを作る攻撃的な選手。相手をかわして前進する力があり、自らフィニッシュまで持ち込める。\n味方へのラストパスにも関わる一方、プレーの中心は組み立てよりも縦への推進とゴール前への進入にある。守備では読みを生かした回収が目立ち、攻撃へ切り替えるきっかけを作る。\n中盤の得点源として価値が高く、前へ出る動きを生かすには周囲が組み立てと背後の管理を補う役割分担が重要になる。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "TYPE_NOOB": {
+      "text": "最終ラインに定着し、相手のパスコースを読んで危険を未然に摘む守備者。球際にも積極的に入り、中央で攻撃を受け止める役割を担う。\n奪った後は持ち出しや味方への配球を試み、守備だけで終わらせない姿勢がある。ただしつなぎにはばらつきがあり、前へ急いだ場面では再び守勢を招きやすい。\n読みと対人対応を軸に一定の安定感を示す。簡潔な出口を選べる時ほど、守備の強みがチーム全体へ還元される。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "Pen4": {
+      "text": "前線での起用が中心で、得点と好機の演出を両立する攻撃の中心役。自ら仕掛けてフィニッシュへ進むだけでなく、周囲を使って味方を生かす。\n中盤ではボール運びや回収へ関与するものの、ゴールへ直結する働きは前線ほど多くない。高い位置で自由を与えられた時に、判断と技術が最も結果へつながる。\n前線での創造性を生かすには、攻撃が途切れた後の配置を周囲が整える必要がある。自由に動ける環境で得点と好機の両方を生み出すタイプだ。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "pipis_57": {
+      "text": "守備と中盤を行き来し、球際と持ち運びで局面を前へ進める選手。最終ラインでは対人対応を軸に危険を止め、中盤では攻撃参加の幅を広げる。\n守備時の配球は不安定になりやすく、奪った直後に相手へ主導権を返す場面が課題となる。中盤ではパスと得点関与が増え、プレーの幅を出しやすい。\n純粋な守備者として固定するより、運動量を生かして攻守の間を埋める役割が合う。中盤で前を向ける状況を作ると持ち味が表れやすい。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "sota2486": {
+      "text": "前線を主戦場とし、相手をかわしてシュートへ持ち込む積極性が特徴。自ら得点するだけでなく味方へのラストパスにも関わり、攻撃を完結させる役割を担う。\nボールを運ぶ力は安定している一方、配球は波があり、仕掛けが孤立すると攻撃が途切れやすい。守備への関与よりもゴール前での怖さに価値がある。\n前線で受ける位置と周囲の支援が整った時に真価を発揮するタイプ。仕掛けを孤立させず、ゴールへ向かう動きを連続させたい。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "Rosario20": {
+      "text": "最後尾と最終ラインの双方を基準以上に務める守備型の万能選手。ゴールを守る時はシュート対応に加え、安定した配球で攻撃の始点にもなる。\n守備者としては球際の強さと持ち出しを生かし、相手の前進を止めた後に自ら局面を動かす。最後尾から守備全体を見渡して支える役割が特に合う。\n前へ出て奪う力もあるが、最も価値が高いのはゴール前の安全を確保する仕事。状況に応じて守護者と守備者を切り替えられる点がチーム編成を助ける。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "nulldero": {
+      "text": "最後尾を中心に、必要に応じて最終ラインも担う守備型の選手。ゴール前ではシュートへ堅実に対応し、試合を大きく崩さない。\n守備者としては相手の狙いを読む回収と持ち出しが特徴だが、パスの安定感に欠ける。球際でも後手に回る場面があり、奪取後を含めて守備の負担を増やしやすい。\n前へ出る役割より、ゴールを背にして状況を整理する役割で持ち味が出る。最後尾でシュート対応へ集中させたい選手だ。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "syobonnkun": {
+      "text": "最終ラインを主戦場とし、球際へ出ながら相手の前進を止める守備者。持ち運びもこなし、奪った位置から自らボールを前へ進められる。\n守備の読みと対人対応は一定の水準にある一方、配球には安定を欠く。攻撃参加や得点関与を求めるより、危険を減らす役割へ集中した時に特徴が明確になる。\n派手な成果よりも、最終ラインで危険を減らす継続的な働きに価値がある。守備を簡潔に完結させる実務型だ。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "EmeraldREX91": {
+      "text": "中盤を主戦場とし、味方の得点を引き出す配球に強みを持つ司令塔型。自ら運んで相手を引きつけ、空いた味方へボールを届ける。\nパスと持ち運びは安定しており、相手の狙いを読んだ回収から攻撃へ転じる場面も多い。得点そのものより、前線へ好機を供給する仕事で存在感を示す。\n攻撃の設計役として周囲との距離感が重要になる。受け手を前線に確保できる形なら、中盤で作った優位を決定機へ運べる。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "Mooontastic4": {
+      "text": "中盤を中心にボールを運び、味方の攻撃を前へ進める選手。自ら得点するよりも、周囲へつないで攻撃の形を整える役割が多い。\n持ち運びには一定の安定感があるが、配球と球際では相手の圧力を受けやすい。守備の回収も多くはなく、攻守の切り替えで試合へ関わり続ける点に課題がある。\nボールを持った場面での前進力を、好機の創出まで結びつけたいタイプ。中盤で運ぶだけで終わらず、前線へ渡す出口を作ることが重要になる。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "Philia_Gray": {
+      "text": "前線で得点を量産する純粋なストライカー。ドリブルから自らフィニッシュへ持ち込み、ゴール前で強い存在感を示す。\nパスで攻撃を組み立てるより、相手の背後や危険な位置へ入り込んで仕事を完結させる。味方へのお膳立てもこなすが、最大の価値は自ら決める力にある。\nチームの流れに左右されにくく、個の得点力で違いを作れる。前線の仕上げ役として役割が明快な選手だ。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "omarupin": {
+      "text": "前線を主戦場とし、持ち運びからシュートへ向かう攻撃的な選手。相手をかわす力を生かし、自ら局面を進める。\n得点は残す一方、味方を使う配球や好機の演出は限定的で、仕掛けが止まると攻撃も途切れやすい。守備への関与よりフィニッシュへ集中するタイプだ。\n前線で孤立すると得点力を生かしにくいため、仕掛ける地点と味方の支援を整える必要がある。ゴールへ近い位置で受けさせたい選手だ。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "viocat77": {
+      "text": "前線でボールを運びながら、自らの得点と味方へのラストパスを狙う連係型のアタッカー。フィニッシュだけに偏らず、周囲を使って攻撃を続けられる。\nドリブルは一定の成功を見せ、守備の読みでボールを回収する場面にも顔を出す。一方でパスの精度には波があり、好機を作る前に攻撃が切れることもある。\n得点役と創造役のどちらを担うかが明確な時に力を発揮しやすい。周囲との連係を保ちながら前線で役割を切り替えるタイプだ。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "Froux_XD": {
+      "text": "中盤に定着し、ドリブルで相手の圧力を外しながらボールを前へ運ぶ選手。守備でも球際とパスの読みを使い、攻撃へ移るきっかけを作る。\n自ら得点する場面は少なく、味方への配球も決定的な成果にはつながりにくい。持ち運びの成功に比べ、攻撃の最後へ関わる仕事が不足している。\n運搬役としての強みを、前線へ渡す最後の判断までつなげたい。持ち運びで外した相手を置き去りにし、攻撃を好機まで進める役割が求められる。",
+      "generatedOnce": true,
+      "source": "legacy-ai-summary"
+    },
+    "AL1S_JP": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "Dra_goons": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "CharlotteDunoa": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "east_company2": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "Lemon_55": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "SARASACLIP": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "amalda01": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "Girigiri_ikiteru": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "jamu12": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "Opanku": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    ".mijinko515": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "cherryspb": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "Kisida_": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "masakitoya": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "Melbin": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "Miku_Dayo_": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "dashogehoge": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "ItsTANAKATIME": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "kinokonan": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "corn_sugar": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "Nagase_Futaba": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "Taikin": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "Be.yuki11273551": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "Jtype916": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "miyuki1118": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    },
+    "rlaiy": {
+      "text": "-(試合数が少ないため)",
+      "generatedOnce": true,
+      "source": "legacy-insufficient-data"
+    }
+  }
+}

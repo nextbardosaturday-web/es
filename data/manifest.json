@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-12T09:50:29.167Z",
+  "matches": [
+    {
+      "gameId": "2026090506",
+      "date": "2026-09-05",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 3,
+      "eastScore": 2,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 12,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "Alpha6000",
+        "teamSide": "TEAM_WEST",
+        "rating": 7.88
+      }
+    },
+    {
+      "gameId": "2026090505",
+      "date": "2026-09-05",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 0,
+      "eastScore": 1,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "Dra_goons",
+        "teamSide": "TEAM_EAST",
+        "rating": 7.47
+      }
+    },
+    {
+      "gameId": "2026090504",
+      "date": "2026-09-05",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 2,
+      "eastScore": 4,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "Dra_goons",
+        "teamSide": "TEAM_EAST",
+        "rating": 7.51
+      }
+    },
+    {
+      "gameId": "2026090503",
+      "date": "2026-09-05",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 3,
+      "eastScore": 0,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 12,
+      "fieldName": "森友学園",
+      "mom": {
+        "player": "sota2486",
+        "teamSide": "TEAM_WEST",
+        "rating": 7.88
+      }
+    },
+    {
+      "gameId": "2026090502",
+      "date": "2026-09-05",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 1,
+      "eastScore": 10,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "森友学園",
+      "mom": {
+        "player": "lllumination1",
+        "teamSide": "TEAM_EAST",
+        "rating": 8.18
+      }
+    },
+    {
+      "gameId": "2026090501",
+      "date": "2026-09-05",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 2,
+      "eastScore": 3,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "森友学園",
+      "mom": {
+        "player": "LagnaKt",
+        "teamSide": "TEAM_EAST",
+        "rating": 7.77
+      }
+    },
+    {
+      "gameId": "2026080106ex",
+      "date": "2026-08-01",
+      "category": "exhibition",
+      "includeOverall": false,
+      "westScore": 3,
+      "eastScore": 6,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 12,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "Pen4",
+        "teamSide": "TEAM_EAST",
+        "rating": 8.07
+      }
+    },
+    {
+      "gameId": "2026080105",
+      "date": "2026-08-01",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 3,
+      "eastScore": 6,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "Dra_goons",
+        "teamSide": "TEAM_EAST",
+        "rating": 8.18
+      }
+    },
+    {
+      "gameId": "2026080104",
+      "date": "2026-08-01",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 4,
+      "eastScore": 3,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "sota2486",
+        "teamSide": "TEAM_EAST",
+        "rating": 8.1
+      }
+    },
+    {
+      "gameId": "2026080103",
+      "date": "2026-08-01",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 3,
+      "eastScore": 2,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "namako3125",
+        "teamSide": "TEAM_WEST",
+        "rating": 7.65
+      }
+    },
+    {
+      "gameId": "2026080102",
+      "date": "2026-08-01",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 0,
+      "eastScore": 0,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "nextbardo",
+        "teamSide": "TEAM_EAST",
+        "rating": 7.43
+      }
+    },
+    {
+      "gameId": "2026080101",
+      "date": "2026-08-01",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 2,
+      "eastScore": 2,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "sota2486",
+        "teamSide": "TEAM_WEST",
+        "rating": 7.84
+      }
+    }
+  ]
+}
