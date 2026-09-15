@@ -1,3 +1,5 @@
+import {minutesText,positionBadges} from './appearance-format.mjs';
+import {selectPositionAppearance} from './position-stints.mjs';
 const $=id=>document.getElementById(id);
 const params=new URLSearchParams(location.search);
 const requestedId=params.get("id")||params.get("name")||"";
@@ -7,7 +9,7 @@ const fmt=(v,d=0)=>Number(v||0).toLocaleString("ja-JP",{minimumFractionDigits:d,
 const percent=(a,b)=>b?`${fmt(a/b*100,1)}%（${fmt(a)}/${fmt(b)}）`:"—";
 const escapeHtml=s=>String(s??"").replace(/[&<>\"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function categoryOk(m){return category==="all"||(category==="official"?m.includeOverall:m.category==="exhibition")}
-function positionOk(p){return selectedPositions.has(String(p.position||"").toUpperCase())}
+function positionOk(p){return !!selectPositionAppearance(p,selectedPositions)}
 function periodOk(m){return (!$('from').value||m.date>=$('from').value)&&(!$('to').value||m.date<=$('to').value)}
 function presetOk(p){return !selectedPresets.size||selectedPresets.has(p.preset||"")}
 
@@ -39,7 +41,7 @@ function appearancesFor(playerId,includePreset=true){
         positionOk(p) &&
         (!includePreset || presetOk(p))
       ){
-        rows.push({...p,match:m});
+        rows.push({...selectPositionAppearance(p,selectedPositions),match:m});
       }
     }
   }
@@ -52,8 +54,8 @@ function appearances(){
 function allCandidatePresets(){const identity=findIdentity();const set=new Set();if(identity)for(const m of data.matches||[])for(const p of m.players||[])if(p.playerId===identity.playerId&&categoryOk(m)&&periodOk(m)&&positionOk(p)&&p.preset)set.add(p.preset);return [...set].sort()}
 function renderPresets(){const list=allCandidatePresets();for(const x of [...selectedPresets])if(!list.includes(x))selectedPresets.delete(x);$('presetList').innerHTML=list.length?list.map(x=>`<label class="preset-check"><input type="checkbox" value="${escapeHtml(x)}" ${selectedPresets.has(x)?'checked':''}>${escapeHtml(x)}</label>`).join(''):'<span class="subtle">該当プリセットなし</span>';$('presetList').querySelectorAll('input').forEach(i=>i.addEventListener('change',()=>{i.checked?selectedPresets.add(i.value):selectedPresets.delete(i.value);render()}))}
 function sum(rows,path){return rows.reduce((a,r)=>a+Number(get(r.stats,path,0)||0),0)}
-function aggregate(rows){const games=rows.length,wins=rows.filter(r=>r.result==='win').length,draws=rows.filter(r=>r.result==='draw').length,losses=rows.filter(r=>r.result==='loss').length,ratings=rows.map(r=>Number(get(r.stats,'rating.value',NaN))).filter(Number.isFinite),avgRating=ratings.length?ratings.reduce((a,b)=>a+b,0)/ratings.length:null;return{games,wins,draws,losses,points:rows.reduce((a,r)=>a+r.points,0),gf:rows.reduce((a,r)=>a+r.goalsFor,0),ga:rows.reduce((a,r)=>a+r.goalsAgainst,0),avgRating,ratedGames:ratings.length}}
-const metrics=[
+function aggregate(rows){const counted=rows.filter(r=>r.appearanceCount!==0),games=counted.length,wins=counted.filter(r=>r.result==='win').length,draws=counted.filter(r=>r.result==='draw').length,losses=counted.filter(r=>r.result==='loss').length,ratings=rows.map(r=>Number(get(r.stats,'rating.value',NaN))).filter(Number.isFinite),avgRating=ratings.length?ratings.reduce((a,b)=>a+b,0)/ratings.length:null;return{games,wins,draws,losses,points:counted.reduce((a,r)=>a+r.points,0),gf:counted.reduce((a,r)=>a+r.goalsFor,0),ga:counted.reduce((a,r)=>a+r.goalsAgainst,0),avgRating,ratedGames:ratings.length}}
+const metrics=[['出場時間','playedMinutes','分',1],['キックオフ','passes.kickoffs','',0],['前方・横パス距離','passes.forwardDistance','m',1],['後方パス距離','passes.backwardDistance','m',1],['方向不明パス距離','passes.unknownDirectionDistance','m',1],
  ['ゴール','shots.goals','',0],['アシスト','assists','',0],['KP','keyPasses','',0],['パス失敗','passes.failed','',0],['パスアウト','passes.out','',0],['枠外シュート','shots.offTarget','',0],['ブロックされたシュート','shots.blocked','',0],['ポスト・バー','shots.woodwork','',0],['xG','shots.xg','',2],['ドリブル失敗','dribbles.failed','',0],['タックル失敗','tackles.failed','',0],['走行距離','runningDistance','m',1],['タッチ','touches','',0],['パス成功','passes.successful','',0],['パス試行','passes.attempts','',0],['シュート','shots.attempts','',0],['枠内シュート','shots.onTarget','',0],['ゴール','shots.goals','',0],['アシスト','assists','',0],['ドリブル試行','dribbles.attempts','',0],['ドリブル成功','dribbles.successful','',0],['ドリブル距離','dribbles.distance','m',1],['タックル試行','tackles.attempts','',0],['保持解除','tackles.disruptions','',0],['タックル奪取','tackles.won','',0],['パスカット奪取','interceptions.won','',0],['カバーリング','covering.total','',0],['シュートブロック','blocks.shot','',0],['セーブ','saves.total','',0],];
 function rateFor(label,rows){if(label==='パス成功')return percent(sum(rows,'passes.successful'),sum(rows,'passes.attempts'));if(label==='枠内シュート')return percent(sum(rows,'shots.onTarget'),sum(rows,'shots.attempts'));if(label==='ゴール')return percent(sum(rows,'shots.goals'),sum(rows,'shots.attempts'));if(label==='ドリブル成功')return percent(sum(rows,'dribbles.successful'),sum(rows,'dribbles.attempts'));if(label==='タックル奪取')return percent(sum(rows,'tackles.won'),sum(rows,'tackles.attempts'));return'—'}
 function weightedAveragePosition(rows){
@@ -68,18 +70,12 @@ function weightedAveragePosition(rows){
   }
   return count?{x:sx/count,y:sy/count,samples:count}:null;
 }
-function renderAveragePosition(rows){
-  const p=weightedAveragePosition(rows);
-  if(!p){$('averagePosition').innerHTML='<div class="empty-visual">位置データなし<br><span class="subtle">再ビルドすると攻撃方向正規化データが生成されます</span></div>';return}
-  const x=Math.max(.04,Math.min(.96,p.x));
-  const y=Math.max(.04,Math.min(.96,p.y));
-  $('averagePosition').innerHTML=`<div class="mini-pitch vertical-pitch"><div class="pitch-half"></div><div class="pitch-circle"></div><div class="penalty-box penalty-top"></div><div class="penalty-box penalty-bottom"></div><div class="avg-dot" style="left:${x*100}%;top:${(1-y)*100}%"></div></div><div class="position-caption">上方向を攻撃方向に統一して集計</div>`;
-}
+function renderAveragePosition(rows){const byPos=new Map();for(const r of rows){for(const part of r.stats?.positionStats||[{position:r.position,stats:r.stats}]){if(!byPos.has(part.position))byPos.set(part.position,[]);byPos.get(part.position).push({stats:part.stats});}}const points=[...byPos].map(([position,rs])=>({position,p:weightedAveragePosition(rs)})).filter(v=>v.p);$('averagePosition').innerHTML=points.length?'<div class="mini-pitch vertical-pitch"><div class="pitch-half"></div><div class="pitch-circle"></div>'+points.map(({position,p})=>'<div class="avg-dot" style="left:'+Math.max(4,Math.min(96,p.x*100))+'%;top:'+Math.max(4,Math.min(96,(1-p.y)*100))+'%"><span class="position-average-label">'+escapeHtml((findIdentity()?.currentName||'')+' ('+position+')')+'</span></div>').join('')+'</div><div class="position-caption">ポジション別。上が攻撃方向。</div>':'<p>位置データなし</p>';}
 function syncPositionChecks(){document.querySelectorAll('#positionChecks input').forEach(i=>i.checked=selectedPositions.has(i.value))}
 function setPositions(values){selectedPositions=new Set(values);selectedPresets.clear();syncPositionChecks();render()}
 
 const POSITIONS=['GK','DF','MF','FW'];
-function posRows(id,pos){const out=[];for(const m of data.matches||[])for(const p of m.players||[])if(p.playerId===id&&categoryOk(m)&&periodOk(m)&&String(p.position||'').toUpperCase()===pos)out.push({...p,match:m});return out}
+function posRows(id,pos){const out=[];for(const m of data.matches||[])for(const p of m.players||[])if(p.playerId===id&&categoryOk(m)&&periodOk(m)&&selectPositionAppearance(p,new Set([pos])))out.push({...selectPositionAppearance(p,new Set([pos])),match:m});return out}
 
 
 function abilityRegulationGames(){
@@ -671,7 +667,7 @@ function renderPositionCard(pr){
  const available=POSITIONS.filter(p=>pr[p].length);
  if(!available.length){tabs.innerHTML='';host.innerHTML='<div class="empty">ポジション別データなし</div>';return}
  if(!available.includes(profilePosition))profilePosition=available[0];
- tabs.innerHTML=POSITIONS.map(p=>`<button type="button" class="position-card-tab ${p===profilePosition?'active':''}" data-card-pos="${p}" ${pr[p].length?'':'disabled'}>${p}<small>${pr[p].length}</small></button>`).join('');
+ tabs.innerHTML=POSITIONS.map(p=>`<button type="button" class="position-card-tab ${p===profilePosition?'active':''}" data-card-pos="${p}" ${pr[p].length?'':'disabled'}>${p}<small>${minutesText(pr[p])}</small></button>`).join('');
  tabs.querySelectorAll('[data-card-pos]').forEach(b=>b.onclick=()=>{profilePosition=b.dataset.cardPos;renderPositionCard(pr)});
  const pos=profilePosition,rows=pr[pos],form=recentForm(rows);
  const requiredGames=specialAbilityRegulation();
@@ -691,7 +687,7 @@ function renderPositionCard(pr){
  const goals=sum(rows,'shots.goals'),assists=sum(rows,'assists'),kp=sum(rows,'keyPasses');
  host.innerHTML=`<article class="power-player-card">
   <header class="power-card-head">
-   <div class="power-card-player"><span class="power-pos power-pos-${pos.toLowerCase()}">${pos}</span><b>${escapeHtml($('playerName')?.textContent||'')}</b>${positionStyleHeader(rows,pos)}${overallBadge(rows,pos)}<small>${rows.length}試合</small></div>
+   <div class="power-card-player"><span class="power-pos power-pos-${pos.toLowerCase()}">${pos}</span><b>${escapeHtml($('playerName')?.textContent||'')}</b>${positionStyleHeader(rows,pos)}${overallBadge(rows,pos)}<small>${minutesText(rows)}</small></div>
    <div class="power-form ${form.cls}"><span>調子</span><b>${form.icon}</b><strong>${form.label}</strong><small>直近${form.count}試合 ${form.avg===null?'—':form.avg.toFixed(2)}</small></div>
   </header>
   <div class="power-card-body">
@@ -789,7 +785,7 @@ function heatmapHtml(rows){
   </div>`;
 }
 function renderAllPositionAreas(pr){
- $('fpHeatmaps').innerHTML=['DF','MF','FW'].map(p=>`<article class="fp-pos-card"><div class="fp-pos-title"><span class="pos-label">${p}</span><small>${pr[p].length}試合</small></div>${heatmapHtml(pr[p])}</article>`).join('');
+ $('fpHeatmaps').innerHTML=['DF','MF','FW'].map(p=>`<article class="fp-pos-card"><div class="fp-pos-title"><span class="pos-label">${p}</span><small>${minutesText(pr[p])}</small></div>${heatmapHtml(pr[p])}</article>`).join('');
  if($('gkArea')) $('gkArea').innerHTML='';
 }
 function view(v){document.querySelectorAll('.player-view-tab').forEach(b=>b.classList.toggle('active',b.dataset.view===v));$('abilityView').hidden=v!=='ability';$('statsView').hidden=v!=='stats';$('matchesView').hidden=v!=='matches'}
@@ -799,12 +795,11 @@ function renderStatsHeatmaps(rows){
   if(!host)return;
   const byPos={DF:[],MF:[],FW:[]};
   for(const r of rows){
-    const p=String(r.position||'').toUpperCase();
-    if(byPos[p])byPos[p].push(r);
+    for(const part of r.stats?.positionStats||[{position:r.position,stats:r.stats}])if(byPos[part.position])byPos[part.position].push({...r,position:part.position,stats:part.stats});
   }
   host.innerHTML=['DF','MF','FW'].map(p=>`
     <article class="fp-pos-card detailed-heatmap-card">
-      <div class="fp-pos-title"><span class="pos-label">${p}</span><small>${byPos[p].length}試合</small></div>
+      <div class="fp-pos-title"><span class="pos-label">${p}</span><small>${minutesText(byPos[p])}</small></div>
       ${heatmapHtml(byPos[p])}
     </article>`).join('');
 }
@@ -882,8 +877,8 @@ function teamCompanionCards(rows){
     card('チーム平均被xG',xga===null?'—':fmt(xga,2),'出場試合時の1試合平均')
   ].join('');
 }
-function render(){const identity=findIdentity();if(!identity){$('status').textContent='選手が見つかりません';return}document.title=`${identity.currentName} - 選手詳細`;$('playerName').textContent=identity.currentName;if($('profileSkin').dataset.name!==identity.currentName){$('profileSkin').dataset.name=identity.currentName;$('profileSkin').replaceChildren(window.EntitySkins.avatar(identity.currentName,64));}const aliases=(identity.aliases||[]).filter(x=>x!==identity.currentName);$('aliases').textContent=aliases.length?`旧名・別名：${aliases.join(' / ')}`:'';renderPresets();const rows=appearances(),a=aggregate(rows);renderStatsHeatmaps(rows);$('status').textContent=`${rows.length}試合を集計`;$('overview').innerHTML=[['試合数',a.games,''],['勝敗',`${a.wins}勝 ${a.draws}分 ${a.losses}敗`,`${a.points} pt`],['GF / GA',`${a.gf} / ${a.ga}`,a.games?`平均 ${fmt(a.gf/a.games,2)} / ${fmt(a.ga/a.games,2)}`:'平均 —'],['平均採点',a.avgRating===null?'—':fmt(a.avgRating,2),a.ratedGames?`${a.ratedGames}試合`:'採点なし']].map(x=>`<div class="metric-card"><div class="label">${x[0]}</div><div class="value ${x[0]==='勝敗'?'small-value':''}">${x[1]}</div><div class="detail">${x[2]}</div></div>`).join('')+teamCompanionCards(rows);renderAbility(identity.playerId);renderHistory(rows);$('matchRows').innerHTML=rows.length?[...rows].sort((a,b)=>b.match.gameId.localeCompare(a.match.gameId)).map(r=>`<tr><td>${r.match.date||'—'}</td><td><a href="match.html?id=${encodeURIComponent(r.match.gameId)}">${escapeHtml(r.match.gameId)}</a></td><td>${r.match.category==='exhibition'?'EX':'通常'}</td><td>${r.position||'—'}</td><td>${escapeHtml(r.preset||'—')}</td><td class="num"><b class="${get(r.stats,'rating.mom',false)?'player-match-mom':''}">${get(r.stats,'rating.mom',false)?'★ ':''}${Number.isFinite(Number(get(r.stats,'rating.value',NaN)))?fmt(get(r.stats,'rating.value'),2):'—'}</b></td><td class="num">${get(r.stats,'shots.goals')}</td><td class="num">${get(r.stats,'passes.successful')}/${get(r.stats,'passes.attempts')}</td><td class="num">${fmt(get(r.stats,'runningDistance'),1)}m</td></tr>`).join(''):'<tr><td colspan="9" class="empty">該当試合なし</td></tr>'}
+function render(){const identity=findIdentity();if(!identity){$('status').textContent='選手が見つかりません';return}document.title=`${identity.currentName} - 選手詳細`;$('playerName').textContent=identity.currentName;if($('profileSkin').dataset.name!==identity.currentName){$('profileSkin').dataset.name=identity.currentName;$('profileSkin').replaceChildren(window.EntitySkins.avatar(identity.currentName,64));}const aliases=(identity.aliases||[]).filter(x=>x!==identity.currentName);$('aliases').textContent=aliases.length?`旧名・別名：${aliases.join(' / ')}`:'';renderPresets();const rows=appearances(),a=aggregate(rows);renderStatsHeatmaps(rows);$('status').textContent=`出場時間 ${minutesText(rows)}（選択したポジションの実績）`;$('overview').innerHTML=[['出場時間',minutesText(rows),''],['勝敗',`${a.wins}勝 ${a.draws}分 ${a.losses}敗`,`${a.points} pt`],['GF / GA',`${a.gf} / ${a.ga}`,a.games?`平均 ${fmt(a.gf/a.games,2)} / ${fmt(a.ga/a.games,2)}`:'平均 —'],['平均採点',a.avgRating===null?'—':fmt(a.avgRating,2),a.ratedGames?minutesText(rows):'採点なし']].map(x=>`<div class="metric-card"><div class="label">${x[0]}</div><div class="value ${x[0]==='勝敗'?'small-value':''}">${x[1]}</div><div class="detail">${x[2]}</div></div>`).join('')+teamCompanionCards(rows);renderAbility(identity.playerId);renderHistory(rows);$('matchRows').innerHTML=rows.length?[...rows].sort((a,b)=>b.match.gameId.localeCompare(a.match.gameId)).map(r=>`<tr><td>${r.match.date||'—'}</td><td><a href="match.html?id=${encodeURIComponent(r.match.gameId)}">${escapeHtml(r.match.gameId)}</a></td><td>${r.match.category==='exhibition'?'EX':'通常'}</td><td>${positionBadges(r.positionLabel||r.position)}</td><td>${escapeHtml(r.preset||'—')}</td><td class="num"><b class="${get(r.stats,'rating.mom',false)?'player-match-mom':''}">${get(r.stats,'rating.mom',false)?'★ ':''}${Number.isFinite(Number(get(r.stats,'rating.value',NaN)))?fmt(get(r.stats,'rating.value'),2):'—'}</b></td><td class="num">${get(r.stats,'shots.goals')}</td><td class="num">${get(r.stats,'passes.successful')}/${get(r.stats,'passes.attempts')}</td><td class="num">${fmt(get(r.stats,'runningDistance'),1)}m</td></tr>`).join(''):'<tr><td colspan="9" class="empty">該当試合なし</td></tr>'}
 document.querySelectorAll('.player-view-tab').forEach(b=>b.onclick=()=>view(b.dataset.view));document.querySelectorAll('#categoryTabs .tab').forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;document.querySelectorAll('#categoryTabs .tab').forEach(x=>x.classList.toggle('active',x===b));selectedPresets.clear();render()}));document.querySelectorAll('#positionChecks input').forEach(i=>i.addEventListener('change',()=>{i.checked?selectedPositions.add(i.value):selectedPositions.delete(i.value);selectedPresets.clear();render()}));$('positionAll').onclick=()=>setPositions(['GK','DF','MF','FW']);$('positionFP').onclick=()=>setPositions(['DF','MF','FW']);$('positionNone').onclick=()=>setPositions([]);['from','to'].forEach(id=>$(id).addEventListener('input',()=>{selectedPresets.clear();render()}));$('resetPeriod').onclick=()=>{$('from').value='';$('to').value='';selectedPresets.clear();render()};fetch('data/player-match-stats.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).then(j=>{data=j;syncPositionChecks();render();view('stats')}).catch(e=>$('status').textContent=`読込失敗: ${e.message}`);
 
-function renderHistory(rows){const order=['shots.goals','assists','keyPasses','passes.attempts','passes.successful','passes.failed','passes.out','shots.attempts','shots.onTarget','shots.offTarget','shots.blocked','shots.woodwork','shots.xg','dribbles.attempts','dribbles.successful','dribbles.failed','tackles.attempts','tackles.won','tackles.failed','runningDistance'];const cols=metrics.filter((m,i,a)=>a.findIndex(x=>x[1]===m[1])===i).sort((a,b)=>(order.includes(a[1])?order.indexOf(a[1]):99)-(order.includes(b[1])?order.indexOf(b[1]):99));const read=(r,path)=>{const v=path.split('.').reduce((x,k)=>x?.[k],r.stats);return v!=null&&Number.isFinite(Number(v))?Number(v):null;};const text=(v,d)=>v===null?'—':fmt(v,d);const sums=cols.map(([,path])=>{const vals=rows.map(r=>read(r,path)).filter(v=>v!==null);return{value:vals.length?vals.reduce((a,b)=>a+b,0):null,n:vals.length};});const table=$('statRows').closest('table');table.classList.add('history-matrix');table.innerHTML='<thead><tr><th>試合 / 日付</th><th>POS</th><th>採点</th>'+cols.map(([label,,unit])=>'<th>'+label+(unit?' ('+unit+')':'')+'</th>').join('')+'</tr><tr class="summary-row"><th>合計 ('+rows.length+'試合)</th><td>—</td><td>—</td>'+cols.map((m,i)=>'<td>'+text(sums[i].value,m[3])+'</td>').join('')+'</tr><tr class="summary-row"><th>1試合平均</th><td>—</td><td>'+text(aggregate(rows).avgRating,2)+'</td>'+cols.map((m,i)=>'<td title="記録のある'+sums[i].n+'試合で平均">'+text(sums[i].n?sums[i].value/sums[i].n:null,2)+'</td>').join('')+'</tr></thead><tbody id="statRows">'+[...rows].sort((a,b)=>b.match.gameId.localeCompare(a.match.gameId)).map(r=>'<tr><th><a href="match.html?id='+encodeURIComponent(r.match.gameId)+'">'+escapeHtml(r.match.gameId)+'</a><small>'+escapeHtml(r.match.date||'')+'</small></th><td>'+escapeHtml(r.position||'—')+'</td><td>'+text(read(r,'rating.value'),2)+'</td>'+cols.map((m,i)=>'<td>'+text(read(r,m[1]),m[3])+'</td>').join('')+'</tr>').join('')+'</tbody>';
+function renderHistory(rows){const order=['playedMinutes','shots.goals','assists','keyPasses','passes.attempts','passes.successful','passes.failed','passes.out','shots.attempts','shots.onTarget','shots.offTarget','shots.blocked','shots.woodwork','shots.xg','dribbles.attempts','dribbles.successful','dribbles.failed','tackles.attempts','tackles.won','tackles.failed','runningDistance'];const cols=metrics.filter((m,i,a)=>a.findIndex(x=>x[1]===m[1])===i).sort((a,b)=>(order.includes(a[1])?order.indexOf(a[1]):99)-(order.includes(b[1])?order.indexOf(b[1]):99));const read=(r,path)=>{const v=path.split('.').reduce((x,k)=>x?.[k],r.stats);return v!=null&&Number.isFinite(Number(v))?Number(v):null;};const text=(v,d)=>v===null?'—':fmt(v,d);const sums=cols.map(([,path])=>{const vals=rows.map(r=>read(r,path)).filter(v=>v!==null);return{value:vals.length?vals.reduce((a,b)=>a+b,0):null,n:vals.length};});const table=$('statRows').closest('table');table.classList.add('history-matrix');table.innerHTML='<thead><tr><th>試合 / 日付</th><th>POS</th><th>採点</th>'+cols.map(([label,,unit])=>'<th>'+label+(unit?' ('+unit+')':'')+'</th>').join('')+'</tr><tr class="summary-row"><th>合計 ('+minutesText(rows)+')</th><td>—</td><td>—</td>'+cols.map((m,i)=>'<td>'+text(sums[i].value,m[3])+'</td>').join('')+'</tr><tr class="summary-row"><th>実績のある試合平均</th><td>—</td><td>'+text(aggregate(rows).avgRating,2)+'</td>'+cols.map((m,i)=>'<td title="記録のある'+sums[i].n+'試合で平均">'+text(sums[i].n?sums[i].value/sums[i].n:null,2)+'</td>').join('')+'</tr></thead><tbody id="statRows">'+[...rows].sort((a,b)=>b.match.gameId.localeCompare(a.match.gameId)).map(r=>'<tr><th><a href="match.html?id='+encodeURIComponent(r.match.gameId)+'">'+escapeHtml(r.match.gameId)+'</a><small>'+escapeHtml(r.match.date||'')+'</small></th><td>'+positionBadges(r.positionLabel||r.position)+'</td><td>'+text(read(r,'rating.value'),2)+'</td>'+cols.map((m,i)=>'<td>'+text(read(r,m[1]),m[3])+'</td>').join('')+'</tr>'+(r.stats.positionStats?.length>1?r.stats.positionStats.map(part=>'<tr class="position-detail-row"><th>↳ '+escapeHtml(part.position)+' '+(part.seconds/60).toFixed(1)+'分</th><td>'+positionBadges(part.position)+'</td><td>'+text(part.stats.rating?.value??null,2)+'</td>'+cols.map(m=>'<td>'+text(read({stats:part.stats},m[1]),m[3])+'</td>').join('')+'</tr>').join(''):'')).join('')+'</tbody>';
 }

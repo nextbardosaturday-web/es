@@ -1,0 +1,4 @@
+export function playedSeconds(r){const s=r?.stats||r;if(Number.isFinite(s?.playedSeconds))return s.playedSeconds;if(s?.positionStats?.length)return s.positionStats.reduce((n,p)=>n+p.seconds,0);return s?.positionTimeline?.totalSeconds??null;}
+export function minutesText(rows){const values=rows.map(playedSeconds);if(values.some(v=>v===null))return '時間不明';return (values.reduce((s,n)=>s+n,0)/60).toLocaleString('ja-JP',{maximumFractionDigits:1})+'分';}
+export function positionBadges(label){const parts=String(label||'—').split('→');return '<span class="position-path">'+parts.map(p=>['GK','DF','MF','FW'].includes(p)?'<span class="role-badge '+p+'">'+p+'</span>':'—').join('<span>→</span>')+'</span>';}
+if(typeof window!=='undefined')window.EntityAppearanceFormat={playedSeconds,minutesText,positionBadges};

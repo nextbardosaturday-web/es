@@ -1,3 +1,5 @@
+import {playedSeconds} from './appearance-format.mjs';
+import {selectRatingTeam} from './rating-best7.mjs';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const POS=['GK','DF','MF','FW'];
@@ -27,14 +29,14 @@ function candidatesForDay(day){
   const matches=rowsForDay(day);
   const buckets=new Map();
   for(const m of matches){
-    for(const p of m.players||[]){
+    for(const original of m.players||[])for(const part of original.stats?.positionStats||[{position:original.position,stats:original.stats}]){const p={...original,position:part.position,stats:part.stats};
       const pos=String(p.position||'').toUpperCase();
       if(!POS.includes(pos))continue;
       const rating=ratingOf(p);
       if(rating===null)continue;
       const key=`${p.playerId}|${pos}`;
-      const b=buckets.get(key)||{playerId:p.playerId,name:p.currentName||p.name||p.playerId,pos,games:0,ratings:[],matchIds:[]};
-      b.games++;
+      const b=buckets.get(key)||{playerId:p.playerId,name:p.currentName||p.name||p.playerId,pos,seconds:0,timeKnown:true,games:0,ratings:[],matchIds:[]};
+      const seconds=part.seconds??playedSeconds(original);if(seconds==null)b.timeKnown=false;else b.seconds+=seconds;b.games+=pos===(original.countPosition||original.position)?1:0;
       b.ratings.push(rating);
       b.matchIds.push(m.gameId||m.matchId||'');
       buckets.set(key,b);
@@ -79,43 +81,10 @@ function initialFormation(cands){
 }
 
 function resolveUnique(cands,formation){
-  const needs={GK:1,...formation.counts};
-  const selected={GK:[],DF:[],MF:[],FW:[]};
-  const cursors={GK:0,DF:0,MF:0,FW:0};
-
-  // Fill requested slots, then repeatedly resolve duplicate players by keeping
-  // the position where that player's average rating is higher.
-  for(const pos of POS){
-    while(selected[pos].length<needs[pos] && cursors[pos]<cands[pos].length){
-      selected[pos].push(cands[pos][cursors[pos]++]);
-    }
-  }
-
-  const notes=[];
-  let guard=0;
-  while(guard++<50){
-    const occurrences=new Map();
-    for(const pos of POS)for(const x of selected[pos]){
-      if(!occurrences.has(x.playerId))occurrences.set(x.playerId,[]);
-      occurrences.get(x.playerId).push({pos,x});
-    }
-    const dup=[...occurrences.entries()].find(([,arr])=>arr.length>1);
-    if(!dup)break;
-
-    const [playerId,arr]=dup;
-    arr.sort((a,b)=>b.x.avg-a.x.avg||b.x.games-a.x.games);
-    const keep=arr[0];
-    for(const remove of arr.slice(1)){
-      selected[remove.pos]=selected[remove.pos].filter(x=>x!==remove.x);
-      notes.push(`${remove.x.name}は${keep.pos} ${keep.x.avg.toFixed(2)}の方が${remove.pos} ${remove.x.avg.toFixed(2)}より高いため、${keep.pos}で優先選出。`);
-      while(selected[remove.pos].length<needs[remove.pos] && cursors[remove.pos]<cands[remove.pos].length){
-        const cand=cands[remove.pos][cursors[remove.pos]++];
-        const already=POS.some(p=>selected[p].some(x=>x.playerId===cand.playerId));
-        if(!already){selected[remove.pos].push(cand);break;}
-      }
-    }
-  }
-  return {selected,notes,needs};
+ const result=selectRatingTeam(cands,{GK:1,...formation.counts});
+ const notes=[result.count===7?'同一選手の重複を避け、7人の平均採点が最大になるポジションの組合せを選出。チーム平均採点 '+result.average.toFixed(3)+'。':'選出可能な人数を優先し、その中で採点合計が最大になる組合せを選出。'];
+ for(const [pos,list] of Object.entries(result.selected))for(const p of list){const alternatives=Object.entries(cands).filter(([other,rows])=>other!==pos&&rows.some(x=>x.playerId===p.playerId));if(alternatives.length)notes.push(p.name+'は '+[pos,...alternatives.map(([other])=>other)].join(' / ')+' の候補。代わりに選出される選手も含めたチーム平均を比較し、'+pos+'で選出。');}
+ return {...result,notes};
 }
 
 function card(x,pos){
@@ -124,7 +93,7 @@ function card(x,pos){
     <span class="best7-pos">${pos}</span>
     <b>${esc(x.name)}</b>
     <strong>${x.avg.toFixed(2)}</strong>
-    <small>${x.games}試合</small>
+    <small>${x.timeKnown?(x.seconds/60).toFixed(1)+'分':'時間未取得'}</small>
   </a>`;
 }
 function renderLine(id,pos,list,count){
@@ -141,7 +110,7 @@ function renderCandidates(cands,selected){
     const rows=cands[pos];
     return `<div class="candidate-column"><div class="candidate-head pos-${pos.toLowerCase()}"><b>${pos}</b><span>${rows.length}人</span></div>
       <div class="candidate-list">${rows.length?rows.map((x,i)=>`<a href="player.html?id=${encodeURIComponent(x.playerId)}" class="${chosen.has(x.playerId)?'is-selected':''}">
-        <span class="candidate-rank">${i+1}</span><b>${esc(x.name)}</b><strong>${x.avg.toFixed(2)}</strong><small>${x.games}試合</small>
+        <span class="candidate-rank">${i+1}</span><b>${esc(x.name)}</b><strong>${x.avg.toFixed(2)}</strong><small>${x.timeKnown?(x.seconds/60).toFixed(1)+'分':'時間未取得'}</small>
       </a>`).join(''):'<div class="candidate-empty">資格者なし</div>'}</div></div>`;
   }).join('');
 }
@@ -176,7 +145,7 @@ function render(){
   if(shortage.length)reasons.push(`選出資格者が不足しているため、${shortage.join('・')}は空席。`);
   $('selectionReason').innerHTML=reasons.map((x,i)=>`<p><span>${i+1}</span>${esc(x)}</p>`).join('');
 
-  $('selectedList').innerHTML=POS.flatMap(pos=>sel[pos].map(x=>`<a href="player.html?id=${encodeURIComponent(x.playerId)}"><span class="mini-pos pos-${pos.toLowerCase()}">${pos}</span><b>${esc(x.name)}</b><strong>${x.avg.toFixed(2)}</strong><small>${x.games}試合</small></a>`)).join('') || '<div class="candidate-empty">選出なし</div>';
+  $('selectedList').innerHTML=POS.flatMap(pos=>sel[pos].map(x=>`<a href="player.html?id=${encodeURIComponent(x.playerId)}"><span class="mini-pos pos-${pos.toLowerCase()}">${pos}</span><b>${esc(x.name)}</b><strong>${x.avg.toFixed(2)}</strong><small>${x.timeKnown?(x.seconds/60).toFixed(1)+'分':'時間未取得'}</small></a>`)).join('') || '<div class="candidate-empty">選出なし</div>';
   renderCandidates(cands,sel);
 
   $('prevDay').disabled=dayIndex<=0;

@@ -1,3 +1,4 @@
+import {positionBadges} from './appearance-format.mjs';
 import {showPlayerPanel} from "./player-event-panel.js";
 import { playerPlayCounts } from "./match-presentation.mjs";
 const PUBLIC_MATCH=document.documentElement.dataset.publicMatch==="true";
@@ -520,7 +521,7 @@ function openRatingDetail(name){
     ['シュート',c.shot],['パス',c.pass],['ドリブル',c.dribble],['タックル',c.tackle],
     ['カット/ブロック',c.defense],['セーブ',c.save],['得失点起点',c.origin]
   ].map(([label,v])=>`<tr><td>${label}</td><td class="${Number(v)<0?'minus':'plus'}">${signedRating(v)}</td></tr>`).join('');
-  body.innerHTML=`<header class="rating-detail-head"><div><small>${esc(p.position||'-')} / ${esc(p.preset||'-')}</small><h2 id="ratingDetailTitle">${esc(p.name||'-')}</h2></div><strong>${ratingNum(p)?.toFixed(2)??'—'}</strong></header>
+  body.innerHTML=`<header class="rating-detail-head"><div><small>${positionBadges(p.positionLabel||p.position)} / ${esc(p.preset||'-')}</small><h2 id="ratingDetailTitle">${esc(p.name||'-')}</h2></div><strong>${ratingNum(p)?.toFixed(2)??'—'}</strong></header>
   ${playCountsHtml(p)}
   <div class="rating-summary-grid">
     <div><span>Ball</span><b>${signedRating(r.ball)}</b><small>-0.50 ～ +2.00</small></div>
@@ -565,8 +566,8 @@ function renderMatchStats(){
   const metric=(label,w,e,fmtv=v=>String(v??0))=>{const wn=num(w),en=num(e),tot=Math.max(1,wn+en),wp=wn/tot*100,ep=100-wp;return `<div class="broadcast-metric"><b class="west-stat-value">${esc(fmtv(w))}</b><div class="broadcast-metric-center"><span>${esc(label)}</span><div class="broadcast-bar team-color-bar"><i class="west" style="width:${wp.toFixed(1)}%"></i><i class="east" style="width:${ep.toFixed(1)}%"></i></div></div><b class="east-stat-value">${esc(fmtv(e))}</b></div>`};
   const posOrder={GK:0,DF:1,MF:2,FW:3};
   const presetLabel=p=>String(p.preset||'').replace(/^(gk|df|mf|fw)_/i,'').replaceAll('_',' ');
-  const rowPlayer=p=>`<div class="broadcast-player"><span class="pos ${esc(String(p.position||''))}">${esc(p.position||'-')}</span><button type="button" class="player-main rating-player-open" data-rating-player="${esc(p.name||'')}"><span class="player-name-line"><b>${esc(p.name)}</b>${ratingBadge(p)}</span>${p.preset?`<small>${esc(presetLabel(p))}</small>`:''}</button><span>${p.shots?.goals?`⚽${p.shots.goals} `:''}${p.assists?`A${p.assists} `:''}${p.saves?.total?`SV${p.saves.total}`:''}</span></div>`;
-  const sortPlayers=(a,b)=>(posOrder[String(a.position||'').toUpperCase()]??99)-(posOrder[String(b.position||'').toUpperCase()]??99)||String(a.name||'').localeCompare(String(b.name||''));
+  const rowPlayer=p=>`<div class="broadcast-player">${positionBadges(p.positionLabel||p.position)}<button type="button" class="player-main rating-player-open" data-rating-player="${esc(p.name||'')}"><span class="player-name-line"><b>${esc(p.name)}</b>${ratingBadge(p)}</span>${p.preset?`<small>${esc(presetLabel(p))}</small>`:''}</button><span>${p.shots?.goals?`⚽${p.shots.goals} `:''}${p.assists?`A${p.assists} `:''}${p.saves?.total?`SV${p.saves.total}`:''}</span></div>`;
+  const sortPlayers=(a,b)=>(posOrder[String(a.initialPosition||a.position||'').toUpperCase()]??99)-(posOrder[String(b.initialPosition||b.position||'').toUpperCase()]??99)||String(a.name||'').localeCompare(String(b.name||''));
   const wp=players.filter(p=>p.teamSide==='TEAM_WEST').sort(sortPlayers);
   const ep=players.filter(p=>p.teamSide==='TEAM_EAST').sort(sortPlayers);
   const pseudoXg=side=>teams[side]?.shots?.xg??teams[side]?.xG??0;
@@ -582,7 +583,7 @@ function renderMatchStats(){
   }).join('');
   const formationTeam=(plist,side)=>{
     const byPos={GK:[],DF:[],MF:[],FW:[]};
-    plist.forEach(p=>{const pos=String(p.position||'').toUpperCase();if(byPos[pos])byPos[pos].push(p);});
+    plist.forEach(p=>{const pos=String(p.initialPosition||p.position||'').toUpperCase();if(byPos[pos])byPos[pos].push(p);});
     const cols=side==='west'?['GK','DF','MF','FW']:['FW','MF','DF','GK'];
     return cols.map(pos=>`<div class="formation-col ${pos.toLowerCase()}"><div class="formation-pos-label">${pos}</div><div class="formation-stack">${byPos[pos].map(p=>`<div class="formation-player ${side}"><span>${esc(p.name)}</span>${p.preset?`<small>${esc(presetLabel(p))}</small>`:''}</div>`).join('')}</div></div>`).join('');
   };

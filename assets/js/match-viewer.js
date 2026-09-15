@@ -161,7 +161,7 @@ function buildPlayerTracking(rows){
   for(const r of latest.values()){
     const name=String(r.target_name),team=String(r.team_side||"");
     if(!state.playerTracking.has(name)) state.playerTracking.set(name,{name,team,points:[]});
-    state.playerTracking.get(name).points.push({x:Number(r.x),z:Number(r.z),time:Number(r.match_time)||0});
+    state.playerTracking.get(name).points.push({x:Number(r.x),z:Number(r.z),time:Number(r.match_time)||0,position:r.position||'不明'});
   }
   for(const item of state.playerTracking.values()) item.points.sort((a,b)=>a.time-b.time);
   state.selectedSpatialPlayers=new Set(state.playerTracking.keys());
@@ -266,12 +266,12 @@ function renderSpatialOverlays(){
   const selected=[...state.playerTracking.values()].filter(p=>state.selectedSpatialPlayers.has(p.name));
   if(state.heatmapEnabled) renderSmoothHeatmap(heat,selected);
   if(state.averageEnabled){
-    for(const p of selected){
+    for(const original of selected)for(const position of new Set(original.points.map(v=>v.position))){const p={...original,points:original.points.filter(v=>v.position===position)};
       if(!p.points.length) continue;
       const x=p.points.reduce((a,v)=>a+v.x,0)/p.points.length,z=p.points.reduce((a,v)=>a+v.z,0)/p.points.length;
       const marker=document.createElement("div"); marker.className=`average-marker ${p.team==="TEAM_WEST"?"average-west":"average-east"}`;
       marker.style.left=`${pct(x,state.field.minX,state.field.maxX)}%`;marker.style.top=`${pct(z,state.field.minZ,state.field.maxZ)}%`;
-      marker.innerHTML=`<div class="average-dot"></div><div class="average-name">${p.name}</div>`;avg.append(marker);
+      marker.innerHTML=`<div class="average-dot"></div><div class="average-name">${p.name} (${position})</div>`;avg.append(marker);
     }
   }
 }

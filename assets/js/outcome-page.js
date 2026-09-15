@@ -1,0 +1,26 @@
+import {effectiveAreas,areaLabel} from './lineup-insights.mjs';
+import {normalizeLegacy,normalizeModern,selectRows} from './history-engine.mjs';
+import {analyzeOutcomes,metricAssociation} from './outcome-engine.mjs';
+const $=id=>document.getElementById(id),esc=x=>String(x??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=(n,d=2)=>n==null?'—':Number(n).toFixed(d),table=(heads,rows)=>'<div class="table-wrap"><table><thead><tr>'+heads.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'+(rows.length?'':'<p>条件に合う記録はありません。</p>');
+let datasets={},contexts=[],serial=0;
+const labels={player:'選手',position:'選手 × ポジション',pair:'同チームの組合せ',formation:'登録フォーメーション（GK–DF–MF–FW）'};
+const label=r=>r.parts.slice(1).join(r.parts[0]==='pair'?' ＋ ':' / ');
+async function render(){const request=++serial;$('status').textContent='分析中…';await new Promise(r=>setTimeout(r,10));if(request!==serial)return;
+ try{const source=$('source').value;if(!datasets[source])throw Error(source==='modern'?'新版データがありません':'旧版データがありません');const rows=selectRows(datasets[source],{from:$('from').value,to:$('to').value,category:source==='modern'?$('category').value:'all'}),a=analyzeOutcomes(rows),v=a.validation;
+ $('builderLink').href=source==='modern'?'team-builder.html':'history.html?tab=balance';$('category').disabled=source==='legacy';
+ $('status').textContent=a.matches.length+'試合を分析 / 不足・不整合で除外 '+a.excluded+'試合。新旧の成績は混ぜていません。';
+ $('validation').textContent=v.available?`過去 ${v.train}試合で学習 → ${v.cut}以降 ${v.test}試合で検証。勝敗傾向の平均二乗誤差 ${fmt(v.mse,3)} / 常に均衡とする基準 ${fmt(v.baseline,3)}。勝敗の方向一致 ${v.accuracy==null?'—':fmt(v.accuracy*100,1)+'%'}（引分を除く）。${v.better?'基準より誤差が小さく、チーム分けの自動モードで使用します。':'基準を上回らないため、チーム分けでは参考扱いです。'}`:v.reason+'。現在は探索用の参考値です。';
+ const min=Math.max(1,+$('minimum').value||3),q=$('search').value.toLowerCase();const ranks=a.model.summaries.filter(r=>r.games>=min&&label(r).toLowerCase().includes(q));
+ $('rankings').innerHTML=Object.entries(labels).map(([kind,title])=>{const rs=ranks.filter(r=>r.parts[0]===kind&&r.coefficient!=null);return ['上位','下位'].map((order,i)=>{const top=[...rs].sort((a,b)=>(i?1:-1)*(a.coefficient-b.coefficient)||b.games-a.games).slice(0,5);return '<article class="top-five-card"><h3>'+title+' · '+order+'5件</h3>'+table(['条件','補正後','試合 / 勝率'],top.map(r=>[esc(label(r)),fmt(r.coefficient*100,1),r.games+' / '+fmt(r.wins/r.games*100,1)+'%']))+'</article>';}).join('');}).join('');
+ $('allResults').innerHTML=table(['条件','補正後の傾向','試合','勝–分–敗','平均得失点差'],ranks.sort((a,b)=>Math.abs(b.coefficient||0)-Math.abs(a.coefficient||0)).map(r=>[esc(label(r)),r.coefficient==null?'比較不足':fmt(r.coefficient*100,1),r.games,`${r.wins}–${r.draws}–${r.losses}`,fmt(r.margin/r.games)]));
+ $('tacticsSection').hidden=source==='legacy';$('legacyNote').hidden=source!=='legacy';
+ if(source==='modern'){const metrics={side:'サイド起点のパス割合',central:'中央起点のパス割合',long:'25m以上のパス割合',short:'12m未満のパス割合',width:'横幅（GKを除く）',depth:'前後の間隔（GKを除く）',advance:'平均の押し上げ位置（GKを除く）'},state=$('scoreState').value;
+ $('tactics').innerHTML=Object.entries(metrics).map(([metric,title])=>{const s=metricAssociation(a.matches,contexts,metric,state);return '<article class="top-five-card"><h3>'+title+'</h3><p>勝敗との相関 <strong>'+fmt(s.r)+'</strong></p><p>両チームの記録がある '+s.n+'試合</p></article>';}).join('');
+ const areas=effectiveAreas(a.matches,contexts,{minimum:min}).filter(r=>r.player.toLowerCase().includes(q));renderAreas(areas,min);
+ }
+ }catch(e){$('status').textContent=e.message;$('rankings').innerHTML='';$('allResults').innerHTML='';}}
+function renderAreas(rows,minimum){const groups=new Map();for(const r of rows){const key=r.player+' / '+r.position;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r);} $('effectiveAreas').innerHTML=[...groups].map(([title,rs])=>{const best=[...rs].filter(r=>r.comparable).sort((a,b)=>b.bonus-a.bonus)[0];return '<article class="top-five-card"><h3>'+esc(title)+'</h3><p>'+(best?'比較対象：'+esc(best.label)+'（勝率差 '+(best.difference>=0?'+':'')+fmt(best.difference*100,1)+'ポイント）':'比較不足：各エリアとそれ以外に各'+minimum+'試合以上必要です。')+'</p><div class="area-grid" aria-label="右が攻撃方向の9エリア">'+[0,1,2].flatMap(lane=>[0,1,2].map(depth=>{const id=depth*3+lane,r=rs.find(r=>r.area===id);return '<div class="area-cell'+(best?.area===id?' area-best':'')+'"><small>'+areaLabel(id)+'</small><b>'+(r?fmt(r.rate*100,0)+'%':'—')+'</b><small>'+(r?r.n+'試合':'記録なし')+'</small></div>';})).join('')+'</div>'+table(['平均位置のエリア','勝–分–敗','他エリアの試合数','勝率差'],rs.map(r=>[esc(r.label),r.wins+'–'+r.draws+'–'+r.losses,r.other,r.comparable?fmt(r.difference*100,1)+'pt':'比較不足']))+'</article>';}).join('')||'<p>対象の選手・ポジションの位置記録がありません。</p>';}
+for(const id of ['source','from','to','category','minimum','search','scoreState'])$(id).addEventListener('change',render);
+const params=new URLSearchParams(location.search);if(params.get('source')==='legacy')$('source').value='legacy';
+await Promise.all([['modern','player-match-stats.json',normalizeModern],['legacy','legacy.json',normalizeLegacy],['context','outcome-context.json',d=>d.matches||[]]].map(async([key,file,normalize])=>{try{const r=await fetch('data/'+file);if(!r.ok)return;const d=normalize(await r.json());if(key==='context')contexts=d;else datasets[key]=d;}catch{}}));render();

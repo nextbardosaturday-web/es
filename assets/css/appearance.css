@@ -31,3 +31,14 @@
 
 /* TOP5 relation cards share the cumulative ranking layout. */
 .insight-top-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;margin:20px 0}.insight-top-grid .top-five-card{min-width:0}.insight-top-grid table{width:100%;min-width:0;table-layout:auto}.insight-top-grid td{overflow-wrap:anywhere}.insight-top-grid h3{margin:0 0 12px;font-size:17px}
+
+/* Outcome analysis cards */
+#validation{line-height:1.8}body:has(#rankings) .card{padding:18px;border:1px solid var(--line);border-radius:12px}#rankings td:first-child{overflow-wrap:anywhere}#positions svg{display:block;width:100%;height:auto}#outcomeMode{max-width:100%}
+
+
+.position-average-label{position:absolute;left:50%;bottom:15px;transform:translateX(-50%);white-space:nowrap;color:white;background:#17374e;padding:2px 4px;font-size:11px;border-radius:3px}.broadcast-player .pos{min-width:58px;white-space:nowrap}
+
+.area-grid{display:grid;grid-template-columns:repeat(3,1fr);margin:12px 0;gap:2px;background:#fff;border:2px solid #fff}.area-cell{padding:8px 3px;text-align:center;background:#245b3a;color:white}.area-cell b,.area-cell small{display:block}.area-cell.area-best{background:#796014;outline:2px solid #ffd467;outline-offset:-2px}.combo-formation{background:#205b39;border:1px solid white;border-radius:10px;padding:14px 6px}.combo-line{display:flex;justify-content:space-around;gap:6px;margin:18px 0;flex-wrap:wrap}.combo-player{display:flex;flex-direction:column;text-align:center;align-items:center;color:white;font-size:12px}.combo-pos{padding:3px 9px;border-radius:5px;color:white}.combo-pos.GK{background:#f28c28}.combo-pos.DF{background:#2584d8}.combo-pos.MF{background:#45c765}.combo-pos.FW{background:#e54848}#combinationBestSeven .filters{display:flex;flex-wrap:wrap;gap:12px}#combinationBestSeven .filters label{display:flex;flex-direction:column}#comboResults .top-five-card{background:var(--panel);color:var(--text)}#comboResults h2{font-size:20px}
+
+.position-path{display:inline-flex;align-items:center;gap:3px;white-space:nowrap}.position-path .role-badge{display:inline-block;padding:2px 5px;border-radius:4px;color:#fff}.role-badge.GK{background:#f28c28}.role-badge.DF{background:#2584d8}.role-badge.MF{background:#45c765}.role-badge.FW{background:#e54848}
+.broadcast-player:has(.role-badge ~ .role-badge){grid-template-columns:80px minmax(0,1fr) auto}

@@ -1,3 +1,5 @@
+import {minutesText,playedSeconds} from './appearance-format.mjs';
+import {selectPositionAppearance} from './position-stints.mjs';
 const $=id=>document.getElementById(id);
 let data=null,tab="official",posTab="ALL",sortState={key:"points",dir:-1};
 const POSITIONS=["GK","DF","MF","FW"];
@@ -81,21 +83,21 @@ function aggregate(){
  const q=$("search").value.trim().toLowerCase(),map=new Map();
  for(const m of data.matches||[]){
   if(!categoryOk(m)||!dateOk(m))continue;
-  for(const p of m.players||[]){
-   const pos=String(p.position||'').toUpperCase();if(posTab!=="ALL"&&pos!==posTab)continue;
-   const s=map.get(p.playerId)||{playerId:p.playerId,name:p.currentName,matches:0,points:0,wins:0,draws:0,losses:0,gf:0,ga:0,rows:[]};
-   s.matches++;s.points+=p.points;s.wins+=p.result==="win";s.draws+=p.result==="draw";s.losses+=p.result==="loss";s.gf+=p.goalsFor;s.ga+=p.goalsAgainst;s.rows.push({...p,match:m});map.set(p.playerId,s);
+  for(const original of m.players||[]){const p=selectPositionAppearance(original,new Set(posTab==="ALL"?["GK","DF","MF","FW"]:[posTab]));if(!p)continue;
+   
+   const s=map.get(p.playerId)||{playerId:p.playerId,name:p.currentName,seconds:0,matches:0,points:0,wins:0,draws:0,losses:0,gf:0,ga:0,rows:[]};
+   const counted=p.appearanceCount??1;s.seconds+=playedSeconds(p)||0;s.matches+=counted;s.points+=p.points*counted;s.wins+=(p.result==="win")*counted;s.draws+=(p.result==="draw")*counted;s.losses+=(p.result==="loss")*counted;s.gf+=p.goalsFor*counted;s.ga+=p.goalsAgainst*counted;s.rows.push({...p,match:m});map.set(p.playerId,s);
   }
  }
  const rows=[...map.values()].filter(p=>p.name.toLowerCase().includes(q)).sort((a,b)=>{const av=listSortValue(a,sortState.key,posTab),bv=listSortValue(b,sortState.key,posTab);if(typeof av==='string')return av.localeCompare(bv)*sortState.dir;return av===bv?a.name.localeCompare(b.name):(av-bv)*sortState.dir});
  $("playerCount").textContent=`${rows.length}選手`;
  if(posTab==="ALL"){
-  $("playerHead").innerHTML=`<tr>${sortHead('選手名','name')}${sortHead('試合数','matches')}${sortHead('勝点','points')}${sortHead('勝','wins')}${sortHead('分','draws')}${sortHead('敗','losses')}${sortHead('得点','gf')}${sortHead('失点','ga')}</tr>`;
-  $("playerRows").innerHTML=rows.length?rows.map(p=>`<tr><td><a class="player-name" href="player.html?id=${encodeURIComponent(p.playerId)}">${esc(p.name)}</a></td><td>${p.matches}</td><td><b>${p.points}</b></td><td>${p.wins}</td><td>${p.draws}</td><td>${p.losses}</td><td>${p.gf}</td><td>${p.ga}</td></tr>`).join(""):'<tr><td colspan="8" class="empty">該当する選手がいません</td></tr>';
+  $("playerHead").innerHTML=`<tr>${sortHead('選手名','name')}${sortHead('出場時間（分）','seconds')}${sortHead('勝点','points')}${sortHead('勝','wins')}${sortHead('分','draws')}${sortHead('敗','losses')}${sortHead('得点','gf')}${sortHead('失点','ga')}</tr>`;
+  $("playerRows").innerHTML=rows.length?rows.map(p=>`<tr><td><a class="player-name" href="player.html?id=${encodeURIComponent(p.playerId)}">${esc(p.name)}</a></td><td>${(p.seconds/60).toFixed(1)}</td><td><b>${p.points}</b></td><td>${p.wins}</td><td>${p.draws}</td><td>${p.losses}</td><td>${p.gf}</td><td>${p.ga}</td></tr>`).join(""):'<tr><td colspan="8" class="empty">該当する選手がいません</td></tr>';
  }else{
   const pos=posTab;
-  $("playerHead").innerHTML=`<tr>${sortHead('選手名','name')}${sortHead('試合数','matches')}${sortHead('総合','overall')}${sortHead('パス','pass')}${sortHead('シュート','shoot')}${sortHead('ドリブル','dribble')}${sortHead('タックル','tackle')}${sortHead(pos==='GK'?'セーブ':'カット/ブロック','intercept')}${sortHead('ポジショニング','positioning')}${sortHead('積極性','activity')}</tr>`;
-  $("playerRows").innerHTML=rows.length?rows.map(p=>`<tr><td><a class="player-name" href="player.html?id=${encodeURIComponent(p.playerId)}">${esc(p.name)}</a></td><td>${p.matches}</td><td>${overallCell(p.rows,pos)}</td><td>${abilityCell(p.rows,pos,'pass')}</td><td>${abilityCell(p.rows,pos,'shoot',pos!=='GK')}</td><td>${abilityCell(p.rows,pos,'dribble',pos!=='GK')}</td><td>${abilityCell(p.rows,pos,'tackle',pos!=='GK')}</td><td>${abilityCell(p.rows,pos,'intercept')}</td><td>${abilityCell(p.rows,pos,'positioning',pos!=='GK')}</td><td>${abilityCell(p.rows,pos,'activity')}</td></tr>`).join(""):'<tr><td colspan="10" class="empty">該当する選手がいません</td></tr>';
+  $("playerHead").innerHTML=`<tr>${sortHead('選手名','name')}${sortHead('出場時間（分）','seconds')}${sortHead('総合','overall')}${sortHead('パス','pass')}${sortHead('シュート','shoot')}${sortHead('ドリブル','dribble')}${sortHead('タックル','tackle')}${sortHead(pos==='GK'?'セーブ':'カット/ブロック','intercept')}${sortHead('ポジショニング','positioning')}${sortHead('積極性','activity')}</tr>`;
+  $("playerRows").innerHTML=rows.length?rows.map(p=>`<tr><td><a class="player-name" href="player.html?id=${encodeURIComponent(p.playerId)}">${esc(p.name)}</a></td><td>${(p.seconds/60).toFixed(1)}</td><td>${overallCell(p.rows,pos)}</td><td>${abilityCell(p.rows,pos,'pass')}</td><td>${abilityCell(p.rows,pos,'shoot',pos!=='GK')}</td><td>${abilityCell(p.rows,pos,'dribble',pos!=='GK')}</td><td>${abilityCell(p.rows,pos,'tackle',pos!=='GK')}</td><td>${abilityCell(p.rows,pos,'intercept')}</td><td>${abilityCell(p.rows,pos,'positioning',pos!=='GK')}</td><td>${abilityCell(p.rows,pos,'activity')}</td></tr>`).join(""):'<tr><td colspan="10" class="empty">該当する選手がいません</td></tr>';
  }
  bindSort();
 }
