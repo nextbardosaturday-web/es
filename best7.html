@@ -6,10 +6,10 @@
 <title>節別ベスト7</title>
 <link rel="stylesheet" href="assets/css/common.css?v=20260817-best7-v633">
 <link rel="stylesheet" href="assets/css/best7.css?v=20260817-best7-v633">
-<link rel="stylesheet" href="assets/css/appearance.css?v=20260912b"><script src="assets/js/appearance.js?v=20260912b"></script></head>
+<link rel="stylesheet" href="assets/css/appearance.css?v=20260915"><script src="assets/js/appearance.js?v=20260915"></script></head>
 <body>
 <header class="site-header"><div class="inner"><a class="brand" href="index.html">EntitySoccer Analytics</a><nav class="site-nav"><a href="matches.html">試合一覧</a><a href="players.html">選手一覧</a><a href="statistics.html">通算</a><a href="best7.html">ベスト7</a><a href="team-simulator.html">チーム分け</a><a href="legacy.html">旧式解析</a></nav></div></header>
-<main class="page best7-page">
+<main class="page best7-page"><h1>ベスト7</h1><nav class="panel-mode-tabs" aria-label="ベスト7の選び方"><button data-best-seven-mode="rating" aria-pressed="true">採点（節別）</button><button data-best-seven-mode="combination" aria-pressed="false">組合せ</button><button data-best-seven-mode="position" aria-pressed="false">組合せ＋位置取り</button></nav><div id="ratingBestSeven">
   <div class="best7-title-row">
     <div><span class="best7-eyebrow">MATCHDAY BEST SEVEN</span><h1>節別ベスト7</h1><p class="subtle">同日付IDの試合を1節として、ポジション別の平均採点から選出します。</p></div>
     <div class="best7-rule-chip">選出資格：同一POS 2試合以上</div>
@@ -64,6 +64,6 @@
     <div class="panel-heading-row"><div><h2>候補一覧</h2><p>そのポジションで2試合以上出場した選手のみ。</p></div><span>平均採点順</span></div>
     <div id="candidateColumns" class="candidate-columns"></div>
   </section>
-</main>
-<script src="assets/js/best7.js?v=20260817-best7-v633"></script>
-</body></html>
+</div><section id="combinationBestSeven" hidden><h2>組合せから選ぶベスト7</h2><p>選手×ポジションと、同チームになる21組の関係をまとめて評価します。位置取りモードは、同じ選手・ポジションの他エリアとの比較ができる場合だけ補助評価を加えます。</p><div class="filters"><label>データ<select id="comboSource"><option value="modern">新版（通常試合）</option><option value="legacy">旧版</option></select></label><label>開始日<input id="comboFrom" type="date"></label><label>終了日<input id="comboTo" type="date"></label><label>同一POSの最低実績試合数<input id="comboMinimum" type="number" min="1" value="3"></label><label>DF<input id="comboDF" type="number" min="0" max="6" value="2"></label><label>MF<input id="comboMF" type="number" min="0" max="6" value="2"></label><label>FW<input id="comboFW" type="number" min="0" max="6" value="2"></label></div><button id="comboRun">候補を出す</button><p id="comboStatus" role="status"></p><p class="subtle">GKは1人、合計7人。選手の重複はありません。全組合せの最適解を保証するものではなく、各段階の上位120候補を残す探索です。採点による節別ベスト7とは期間・選出基準が異なります。位置取り補助は他エリアとの勝敗傾向差を少数例ほど0へ縮め、その7人平均に0.25を掛けた参考値です。組合せの未知部分は0扱いなので、記録のある組合せ数も確認してください。</p><p><a href="outcomes.html">勝敗分析で位置取りの根拠を見る →</a></p><div id="comboResults" class="insight-top-grid"></div></section></main><script type="module" src="assets/js/combination-best7.js?v=20260915"></script>
+<script type="module" src="assets/js/best7.js?v=20260915time"></script>
+<script type="module" src="assets/js/appearance-format.mjs?v=20260915"></script></body></html>

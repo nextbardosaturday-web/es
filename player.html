@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>選手詳細</title>
   <link rel="stylesheet" href="assets/css/stats-pages.css?v=20260822-coverstyle-v4">
-<link rel="stylesheet" href="assets/css/appearance.css?v=20260912b"><script src="assets/js/appearance.js?v=20260912b"></script></head>
+<link rel="stylesheet" href="assets/css/appearance.css?v=20260915"><script src="assets/js/appearance.js?v=20260915"></script></head>
 <body>
 <header class="site-header"><div class="inner"><a class="brand" href="index.html">EntitySoccer Analytics</a><nav class="site-nav"><a href="matches.html">試合一覧</a><a href="players.html">選手一覧</a><a href="statistics.html">通算</a><a href="best7.html">ベスト7</a><a href="team-simulator.html">チーム分け</a><a href="legacy.html">旧式解析</a></nav></div></header>
 <main class="page">
@@ -60,9 +60,10 @@
       </div>
       <div id="statsHeatmaps" class="fp-heatmap-grid detailed-heatmap-grid"></div>
     </section>
-    <section class="section"><h2>試合履歴とスタッツ</h2><p class="subtle">横にスクロールして全項目を確認できます。平均は記録のある試合を対象にし、不明は「—」で表示します。</p><div class="table-wrap"><table><thead><tr><th>項目</th><th class="num">累計</th><th class="num">1試合平均</th><th class="num">率・内訳</th></tr></thead><tbody id="statRows"></tbody></table></div></section>
+    <section class="section"><h2>試合履歴とスタッツ</h2><p class="subtle">横にスクロールして全項目を確認できます。平均はそのポジションの実績がある試合が対象です。試合数は最長ポジションに1試合、同時間なら最初のポジションへ計上します。途中変更の内訳行は合計へ二重に加えません。</p><div class="table-wrap"><table><thead><tr><th>項目</th><th class="num">累計</th><th class="num">1試合平均</th><th class="num">率・内訳</th></tr></thead><tbody id="statRows"></tbody></table></div></section>
   </section>
   <section id="matchesView" class="player-view" hidden><section class="section"><h2>試合別</h2><div class="table-wrap"><table><thead><tr><th>日付</th><th>試合</th><th>区分</th><th>位置</th><th>プリセット</th><th class="num">採点</th><th class="num">得点</th><th class="num">パス</th><th class="num">走行距離</th></tr></thead><tbody id="matchRows"></tbody></table></div></section></section>
 </main>
-<script src="assets/js/player.js?v=20260912b"></script>
-</body></html>
+<script type="module" src="assets/js/player.js?v=20260915"></script>
+<script type="module" src="assets/js/appearance-format.mjs?v=20260915"></script></body></html>
+
