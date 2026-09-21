@@ -849,7 +849,7 @@ function setupMainTabs(){
     if(name==='stats')renderMatchStats();
   };
   buttons.forEach(b=>b.addEventListener('click',()=>activate(b.dataset.mainTab)));
-  activate('stats');
+  activate(new URLSearchParams(location.search).get('view')==='replay'?'replay':'stats');
 
   const logButtons=[...document.querySelectorAll('[data-log-tab]')];
   const logPanels=[...document.querySelectorAll('[data-log-panel]')];

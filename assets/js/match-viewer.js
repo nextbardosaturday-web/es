@@ -774,7 +774,7 @@ async function init(){
     state.matchDuration=Number(match.durationSec)||1; state.events=events;
     const goalTimes=events.filter(e=>String(e.event_type).toUpperCase()==="GOAL").map(e=>Number(e.match_time)||0).sort((a,b)=>a-b);
     state.scores=scores.map((s,i)=>({...s,absolute_match_time:(goalTimes[i] ?? Number(s.match_time) ?? 0)}));
-    drawField(field); buildFrames(snapshots); buildPlayerTracking(snapshots); buildGoals(); buildPlaybackTimeline(); buildMomentum(); $("gameId").textContent=match.gameId; $("category").textContent=match.category; $("range").max=state.duration; listEvents(); render(); $("status").hidden=true; $("app").hidden=false;
+    drawField(field); buildFrames(snapshots); buildPlayerTracking(snapshots); buildGoals(); buildPlaybackTimeline(); buildMomentum(); $("gameId").textContent=match.gameId; $("category").textContent=match.category; $("range").max=state.duration; listEvents(); const requestedTime=Number(params.get("t"));if(params.has("t")&&Number.isFinite(requestedTime)){const nearest=[...state.matchToVirtual.keys()].sort((a,b)=>Math.abs(a-requestedTime)-Math.abs(b-requestedTime))[0];state.time=state.matchToVirtual.get(nearest)??0;} render(); $("status").hidden=true; $("app").hidden=false;
     console.info("Tracking timeline",{goalTimes,goals:state.goals,kickoffWindows:kickoffWindows().map(w=>({start:w.start,resume:w.resume})),duration:state.duration});
   }catch(e){$("status").textContent=`読み込み失敗: ${e.message}。ローカルHTTPサーバー経由で開いてください。`;console.error(e);}
 }
