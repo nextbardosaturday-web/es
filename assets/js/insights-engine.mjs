@@ -7,10 +7,16 @@ export function summarizeInsights(matches){
  for(const g of goals)buckets[Math.min(9,Math.max(0,Math.floor(g.time/60)))]++;
  return {games:matches.length,goals:goals.length,draws,comebacks,margins:[...margins].sort((a,b)=>a[0]-b[0]),buckets,goalsPerGame:matches.length?goals.length/matches.length:null,
  assists:rankPairs(goals.filter(g=>g.assistPlayer).map(g=>({...g,success:true})),g=>[g.assistPlayer,g.player]),
- passes:rankPairs(events.filter(e=>e.type==='PASS'),e=>[e.player,e.target]),
+ passes:rankPairs(events.filter(e=>e.type==='PASS'&&e.success),e=>[e.player,e.target]),
  goalOpponents:rankPairs(goals.map(g=>({...g,success:true})),g=>[g.player,g.opponentGK]),
  tackles:rankPairs(events.filter(e=>e.type==='TACKLE'),e=>[e.player,e.target]),dribbles:rankPairs(events.filter(e=>e.type==='DRIBBLE'),e=>[e.player,e.target]),
  patterns:goals.flatMap(g=>(g.patterns||[]).map(p=>({...p,player:g.player,assistPlayer:g.assistPlayer,opponentGK:g.opponentGK,gameId:g.gameId,time:g.time}))),
  coverage:{events:events.length,positioned:events.filter(e=>e.start).length,goalsWithKeeper:goals.filter(e=>e.opponentGK).length,tacklesWithTarget:events.filter(e=>e.type==='TACKLE'&&e.target).length,tackles:events.filter(e=>e.type==='TACKLE').length}
  };
+}
+
+// Opponent advantage is a rate, not a count of encounters.
+export function favorableOpponents(rows,{minimum=5,focus=''}={}){
+ const min=Math.max(1,Number(minimum)||5),who=focus.toLowerCase();
+ return rows.filter(r=>r.attempts>=min&&r.success/r.attempts>.5&&(!who||r.from.toLowerCase().includes(who)||r.to.toLowerCase().includes(who))).map(r=>({...r,rate:r.success/r.attempts,failure:r.attempts-r.success})).sort((a,b)=>b.rate-a.rate||b.attempts-a.attempts||a.from.localeCompare(b.from)||a.to.localeCompare(b.to)).slice(0,5);
 }
