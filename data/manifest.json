@@ -1,7 +1,92 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-12T09:50:29.167Z",
+  "generatedAt": "2026-10-10T16:21:15.131Z",
   "matches": [
+    {
+      "gameId": "2026101005",
+      "date": "2026-10-10",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 2,
+      "eastScore": 6,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 12,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "LagnaKt",
+        "teamSide": "TEAM_EAST",
+        "rating": 8.15
+      }
+    },
+    {
+      "gameId": "2026101004",
+      "date": "2026-10-10",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 1,
+      "eastScore": 2,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "namako3125",
+        "teamSide": "TEAM_EAST",
+        "rating": 7.79
+      }
+    },
+    {
+      "gameId": "2026101003",
+      "date": "2026-10-10",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 3,
+      "eastScore": 2,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "omarupin",
+        "teamSide": "TEAM_WEST",
+        "rating": 7.8
+      }
+    },
+    {
+      "gameId": "2026101002",
+      "date": "2026-10-10",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 1,
+      "eastScore": 2,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 12,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "M0nJ",
+        "teamSide": "TEAM_EAST",
+        "rating": 7.64
+      }
+    },
+    {
+      "gameId": "2026101001",
+      "date": "2026-10-10",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 2,
+      "eastScore": 2,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 12,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "LagnaKt",
+        "teamSide": "TEAM_WEST",
+        "rating": 7.69
+      }
+    },
     {
       "gameId": "2026090506",
       "date": "2026-09-05",
@@ -67,7 +152,7 @@
       "mom": {
         "player": "sota2486",
         "teamSide": "TEAM_WEST",
-        "rating": 7.88
+        "rating": 7.85
       }
     },
     {
@@ -203,7 +288,7 @@
       "mom": {
         "player": "sota2486",
         "teamSide": "TEAM_WEST",
-        "rating": 7.84
+        "rating": 7.83
       }
     }
   ]
