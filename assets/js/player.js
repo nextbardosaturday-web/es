@@ -1,3 +1,4 @@
+import {TRAIT_MIN_POSITION_MATCHES,traitAppearanceCount} from './trait-settings.mjs?v=20261011traits';
 import {minutesText,positionBadges} from './appearance-format.mjs';
 import {selectPositionAppearance} from './position-stints.mjs';
 const $=id=>document.getElementById(id);
@@ -235,7 +236,7 @@ function currentEventCount(){
  return dates.size;
 }
 function specialAbilityRegulation(){
- return currentEventCount()*2;
+ return TRAIT_MIN_POSITION_MATCHES;
 }
 
 function meanOf(vals){
@@ -288,7 +289,7 @@ function blendScores(parts){
  return valid.reduce((a,b)=>a+b.score*b.weight,0)/w;
 }
 function confidenceAdjusted(score,rows){
- const required=Math.max(1,specialAbilityRegulation());
+ const required=Math.max(1,currentEventCount()*2);
  const conf=Math.max(0,Math.min(1,rows.length/required));
  return 50+(score-50)*conf;
 }
@@ -671,7 +672,8 @@ function renderPositionCard(pr){
  tabs.querySelectorAll('[data-card-pos]').forEach(b=>b.onclick=()=>{profilePosition=b.dataset.cardPos;renderPositionCard(pr)});
  const pos=profilePosition,rows=pr[pos],form=recentForm(rows);
  const requiredGames=specialAbilityRegulation();
- const specialEligible=rows.length>=requiredGames;
+ const traitGames=traitAppearanceCount(rows);
+ const specialEligible=traitGames>=requiredGames;
  const defs=[
   ['パス','pass',true],
   ['シュート','shoot',pos!=='GK'],
@@ -698,8 +700,8 @@ function renderPositionCard(pr){
       <div class="power-special-title">特性</div>
       <div class="power-special-grid">${traitHtml(rows,pos,specialEligible)}</div>
       <p class="power-special-note">${specialEligible
-        ? `規定到達：${rows.length}試合 / ${requiredGames}試合（${currentEventCount()}開催 × 2）`
-        : `規定：${requiredGames}試合（${currentEventCount()}開催 × 2） / 現在 ${rows.length}試合`
+        ? `規定到達：同POS ${traitGames}試合 / ${requiredGames}試合`
+        : `規定：同POS ${requiredGames}試合 / 現在 ${traitGames}試合`
       }</p>
     </div>
    </section>
