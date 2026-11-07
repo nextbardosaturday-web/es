@@ -1,7 +1,92 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-10T16:21:15.131Z",
+  "generatedAt": "2026-11-07T15:54:41.133Z",
   "matches": [
+    {
+      "gameId": "2026110705",
+      "date": "2026-11-07",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 3,
+      "eastScore": 0,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 12,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "M0nJ",
+        "teamSide": "TEAM_WEST",
+        "rating": 7.73
+      }
+    },
+    {
+      "gameId": "2026110704",
+      "date": "2026-11-07",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 3,
+      "eastScore": 6,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "Dra_goons",
+        "teamSide": "TEAM_EAST",
+        "rating": 8.01
+      }
+    },
+    {
+      "gameId": "2026110703",
+      "date": "2026-11-07",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 0,
+      "eastScore": 3,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 14,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "Dra_goons",
+        "teamSide": "TEAM_EAST",
+        "rating": 8.03
+      }
+    },
+    {
+      "gameId": "2026110702",
+      "date": "2026-11-07",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 0,
+      "eastScore": 3,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 16,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "Philia_Gray",
+        "teamSide": "TEAM_EAST",
+        "rating": 7.81
+      }
+    },
+    {
+      "gameId": "2026110701",
+      "date": "2026-11-07",
+      "category": "official",
+      "includeOverall": true,
+      "westScore": 2,
+      "eastScore": 1,
+      "halfDurationSec": 300,
+      "durationSec": 599,
+      "playerCount": 12,
+      "fieldName": "六四天安門競技場",
+      "mom": {
+        "player": "Pen4",
+        "teamSide": "TEAM_WEST",
+        "rating": 7.79
+      }
+    },
     {
       "gameId": "2026101005",
       "date": "2026-10-10",
