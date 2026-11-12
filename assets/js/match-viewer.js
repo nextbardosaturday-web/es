@@ -1,4 +1,5 @@
-import {snapshotBatches,lineOutScenes} from "./replay-boundaries.mjs";
+import {scoreTimeline} from "./score-timeline.mjs";
+import {snapshotBatches,lineOutScenes} from "./replay-boundaries.mjs?v=20261108og";
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 const gameId = params.get("id") || "2026080101";
@@ -329,7 +330,7 @@ function kickoffWindows(){
 
 function pauseLabelAt(t){
   const types=state.events.filter(e=>Number(e.match_time)===t).map(e=>String(e.event_type).toUpperCase());
-  if(types.includes("GOAL")) return "ゴール後・再開待ち";
+  if(types.includes("GOAL")||types.includes("OWN_GOAL")) return "ゴール後・再開待ち";
   if(types.includes("SET_PLAY_THROW_IN")) return "スローイン準備";
   if(types.includes("SET_PLAY_GOAL_KICK")) return "ゴールキック準備";
   if(types.includes("SET_PLAY_CORNER_KICK")) return "コーナーキック準備";
@@ -338,7 +339,7 @@ function pauseLabelAt(t){
 }
 
 function goalSideFor(event){
-  const gx=Number(event.goal_x);
+  const gx=event.goal_x==null?NaN:Number(event.goal_x);
   if(Number.isFinite(gx)) return Math.abs(gx-state.field.minX)<=Math.abs(gx-state.field.maxX)?"west":"east";
   return String(event.team_side).toUpperCase()==="TEAM_WEST"?"east":"west";
 }
@@ -372,12 +373,11 @@ function shotTrajectory(shotTime,goalTime,goalX,goalY,goalZ,shotX,shotY,shotZ){
 }
 
 function buildGoals(){
-  const goalEvents=state.events.filter(e=>String(e.event_type).toUpperCase()==="GOAL").sort((a,b)=>Number(a.match_time)-Number(b.match_time));
-  state.goals=goalEvents.map((event,i)=>{
-    const score=state.scores[i]||{};
-    const side=goalSideFor(event);
+  state.goals=state.scores.map(score=>{
+    const event=score.event||{match_time:score.absolute_match_time,player_name:score.scorer,team_side:score.teamSide};
+    const side=goalSideFor({...event,team_side:score.teamSide});
     const goalDef=state.field.goals?.[side];
-    const shot=latestShotFor(event);
+    const shot=score.ownGoal?null:latestShotFor(event);
     const lineX=side==="west"?state.field.minX:state.field.maxX;
     const goalZ=Number(event.goal_z);
     const goalY=Number(event.goal_y);
@@ -386,10 +386,10 @@ function buildGoals(){
     const shotX=Number(directContact?.ball?.x??shot?.event_x);
     const shotZ=Number(directContact?.ball?.z??shot?.event_z);
     const shotY=Number(directContact?.ball?.y??shot?.event_y);
-    const validShot=Number.isFinite(shotX)&&Number.isFinite(shotZ);
+    const validShot=!!shot&&Number.isFinite(shotX)&&Number.isFinite(shotZ);
     const validGoal=Number.isFinite(goalZ);
     const distance=validShot&&validGoal?Math.hypot(lineX-shotX,goalZ-shotZ):null;
-    const shotTime=Number(shot?.match_time);
+    const shotTime=shot?Number(shot.match_time):Number(event.match_time);
     const resolvedGoalZ=validGoal?goalZ:state.field.centerZ;
     const resolvedGoalY=Number.isFinite(goalY)?goalY:state.field.baseY;
     return {
@@ -398,8 +398,8 @@ function buildGoals(){
       shotTime:Number.isFinite(shotTime)?shotTime:Math.max(0,(Number(event.match_time)||0)-1),
       scorer:score.scorer||event.player_name||"不明",
       assist:score.assist||null,
-      ownGoal:Boolean(Number(score.own_goal)||0),
-      teamSide:event.team_side||null,
+      ownGoal:score.ownGoal,
+      teamSide:score.teamSide,
       side, goalDef,
       shotX:validShot?shotX:null, shotZ:validShot?shotZ:null,
       goalX:lineX, goalZ:resolvedGoalZ,
@@ -533,7 +533,7 @@ function renderMomentumChart(){
     const gx=x(g.matchTime),westGoal=String(g.teamSide)==="TEAM_WEST";
     const gy=westGoal?18:h-18;
     const label=westGoal?"W":"E";
-    return `<g class="momentum-goal-marker ${westGoal?"goal-west":"goal-east"}" data-goal-index="${i}" transform="translate(${gx.toFixed(1)} ${gy})"><circle r="10"></circle><text text-anchor="middle" dominant-baseline="central">G</text><title>${fmt(g.matchTime)} GOAL ${g.scorer}${g.assist?` / Assist: ${g.assist}`:""}</title></g>`;
+    return `<g class="momentum-goal-marker ${westGoal?"goal-west":"goal-east"}" data-goal-index="${i}" transform="translate(${gx.toFixed(1)} ${gy})"><circle r="10"></circle><text text-anchor="middle" dominant-baseline="central">${g.ownGoal?"OG":"G"}</text><title>${fmt(g.matchTime)} ${g.ownGoal?"OG":"GOAL"} ${g.scorer}${g.assist?` / Assist: ${g.assist}`:""}</title></g>`;
   }).join("");
   svg.innerHTML=`<line class="momentum-zero" x1="${pad}" y1="${mid}" x2="${w-pad}" y2="${mid}"></line><polyline class="momentum-west" points="${west}"></polyline><polyline class="momentum-east" points="${east}"></polyline>${goalMarkers}<line id="momentumCursor" class="momentum-cursor" x1="${pad}" y1="0" x2="${pad}" y2="${h}"></line>`;
   state.momentumCursor=$("momentumCursor");
@@ -545,7 +545,7 @@ function renderMomentumChart(){
   };
   svg.onmousemove=e=>{
     const marker=e.target.closest?.(".momentum-goal-marker");
-    if(marker){const g=state.goals[Number(marker.dataset.goalIndex)];$("momentumValue").textContent=g?`${fmt(g.matchTime)} GOAL ${g.scorer}${g.assist?` / Assist: ${g.assist}`:""}`:"GOAL";return;}
+    if(marker){const g=state.goals[Number(marker.dataset.goalIndex)];$("momentumValue").textContent=g?`${fmt(g.matchTime)} ${g.ownGoal?"OG":"GOAL"} ${g.scorer}${g.assist?` / Assist: ${g.assist}`:""}`:"GOAL";return;}
     const r=svg.getBoundingClientRect(),ratio=clamp((e.clientX-r.left)/r.width,0,1),t=Math.round(ratio*state.matchDuration),p=state.momentum[t];$("momentumValue").textContent=p?.team?`${p.team==="TEAM_WEST"?"WEST":"EAST"} ${Math.round(p.probability*100)}% / ${p.holder||"-"}`:"中立";
   };
   svg.onmouseleave=()=>updateMomentumReadout(playbackPosition(state.time).matchTime);
@@ -772,8 +772,8 @@ async function init(){
   try{
     const [match,field,events,scores,snapshots]=await Promise.all([json("match.json"),json("field.json"),json("events.json"),json("scores.json"),json("snapshots.json")]);
     state.matchDuration=Number(match.durationSec)||1; state.events=events;
-    const goalTimes=events.filter(e=>String(e.event_type).toUpperCase()==="GOAL").map(e=>Number(e.match_time)||0).sort((a,b)=>a-b);
-    state.scores=scores.map((s,i)=>({...s,absolute_match_time:(goalTimes[i] ?? Number(s.match_time) ?? 0)}));
+    state.scores=scoreTimeline(events,scores,match.halfDurationSec||300);
+    const goalTimes=state.scores.map(g=>g.absolute_match_time);
     drawField(field); buildFrames(snapshots); buildPlayerTracking(snapshots); buildGoals(); buildPlaybackTimeline(); buildMomentum(); $("gameId").textContent=match.gameId; $("category").textContent=match.category; $("range").max=state.duration; listEvents(); const requestedTime=Number(params.get("t"));if(params.has("t")&&Number.isFinite(requestedTime)){const nearest=[...state.matchToVirtual.keys()].sort((a,b)=>Math.abs(a-requestedTime)-Math.abs(b-requestedTime))[0];state.time=state.matchToVirtual.get(nearest)??0;} render(); $("status").hidden=true; $("app").hidden=false;
     console.info("Tracking timeline",{goalTimes,goals:state.goals,kickoffWindows:kickoffWindows().map(w=>({start:w.start,resume:w.resume})),duration:state.duration});
   }catch(e){$("status").textContent=`読み込み失敗: ${e.message}。ローカルHTTPサーバー経由で開いてください。`;console.error(e);}

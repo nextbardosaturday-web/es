@@ -532,6 +532,7 @@ function openRatingDetail(name){
   <h3>Ball 内訳</h3><table class="rating-breakdown"><tbody>${rows}</tbody></table>
   ${r.context?.situation?`<h3>状況加点</h3><table class="rating-breakdown"><tbody>
     <tr><td>ゴール</td><td>${signedRating(r.context.situation.goal)}</td></tr>
+    ${r.context.situation.ownGoal?`<tr><td>オウンゴール</td><td>${signedRating(r.context.situation.ownGoal)}</td></tr>`:''}
     <tr><td>セーブ</td><td>${signedRating(r.context.situation.save)}</td></tr>
     <tr><td>アシスト</td><td>${signedRating(r.context.situation.assist)}</td></tr>
     <tr><td>KP</td><td>${signedRating(r.context.situation.keyPass)}</td></tr>
@@ -555,12 +556,12 @@ function renderMatchStats(){
   const teams=st.teams||{}, west=teams.TEAM_WEST||{}, east=teams.TEAM_EAST||{};
   const players=Array.isArray(st.players)?st.players:[];
   const pe=Array.isArray(state.playEvents)?state.playEvents:[];
-  const goals=pe.filter(e=>eventType(e)==="SHOT"&&String(e.result)==="GOAL").sort((a,b)=>eventTime(a)-eventTime(b));
-  const wg=num(west.shots?.goals),eg=num(east.shots?.goals);
+  const goals=st.scoreTimeline?.length?st.scoreTimeline.map(g=>({...g,matchTime:g.time})):pe.filter(e=>eventType(e)==="OWN_GOAL"||eventType(e)==="SHOT"&&String(e.result)==="GOAL").sort((a,b)=>eventTime(a)-eventTime(b));
+  const wg=num(west.goalsFor??west.shots?.goals),eg=num(east.goalsFor??east.shots?.goals);
   const halfOf=t=>num(t)<300?1:2;
   const halfTime=t=>halfOf(t)===1?num(t):Math.max(0,num(t)-300);
   const halfLabel=t=>`前半 ${fmt(halfTime(t))}`;
-  const goalSideScore=(half,side)=>goals.filter(g=>halfOf(eventTime(g))===half&&g.teamSide===side).length;
+  const goalSideScore=(half,side)=>goals.filter(g=>Number(g.half||g.halfNo||halfOf(eventTime(g)))===half&&g.teamSide===side).length;
   const westH1=goalSideScore(1,'TEAM_WEST'), eastH1=goalSideScore(1,'TEAM_EAST');
   const westH2=goalSideScore(2,'TEAM_WEST'), eastH2=goalSideScore(2,'TEAM_EAST');
   const metric=(label,w,e,fmtv=v=>String(v??0))=>{const wn=num(w),en=num(e),tot=Math.max(1,wn+en),wp=wn/tot*100,ep=100-wp;return `<div class="broadcast-metric"><b class="west-stat-value">${esc(fmtv(w))}</b><div class="broadcast-metric-center"><span>${esc(label)}</span><div class="broadcast-bar team-color-bar"><i class="west" style="width:${wp.toFixed(1)}%"></i><i class="east" style="width:${ep.toFixed(1)}%"></i></div></div><b class="east-stat-value">${esc(fmtv(e))}</b></div>`};
@@ -577,9 +578,9 @@ function renderMatchStats(){
   const goalRows=goals.map(g=>{
     if(g.teamSide==='TEAM_WEST')sw++; else se++;
     const westGoal=g.teamSide==='TEAM_WEST';
-    const westCell=westGoal?`<b>${esc(g.player||'-')}</b>${g.assistPlayer?`<small>(${esc(g.assistPlayer)})</small>`:''}`:'';
-    const eastCell=!westGoal?`<b>${esc(g.player||'-')}</b>${g.assistPlayer?`<small>(${esc(g.assistPlayer)})</small>`:''}`:'';
-    return `<div class="broadcast-goal-row"><span class="goal-time"><small>${halfOf(eventTime(g))===1?'前半':'後半'}</small>${fmt(halfTime(eventTime(g)))}</span><span class="goal-west">${westCell}</span><strong class="goal-score">${sw} - ${se}</strong><span class="goal-east">${eastCell}</span></div>`;
+    const westCell=westGoal?`<b>${g.ownGoal||g.type==='OWN_GOAL'?'OG：':''}${esc(g.player||'-')}</b>${g.assistPlayer?`<small>(${esc(g.assistPlayer)})</small>`:''}`:'';
+    const eastCell=!westGoal?`<b>${g.ownGoal||g.type==='OWN_GOAL'?'OG：':''}${esc(g.player||'-')}</b>${g.assistPlayer?`<small>(${esc(g.assistPlayer)})</small>`:''}`:'';
+    return `<div class="broadcast-goal-row"><span class="goal-time"><small>${Number(g.half||g.halfNo||halfOf(eventTime(g)))===1?'前半':'後半'}</small>${fmt(g.halfTime??halfTime(eventTime(g)))}</span><span class="goal-west">${westCell}</span><strong class="goal-score">${sw} - ${se}</strong><span class="goal-east">${eastCell}</span></div>`;
   }).join('');
   const formationTeam=(plist,side)=>{
     const byPos={GK:[],DF:[],MF:[],FW:[]};

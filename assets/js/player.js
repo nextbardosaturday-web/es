@@ -338,7 +338,7 @@ function ratingStability(rows){
 }
 function lowRatingRate(rows){
  const vals=rows.map(r=>Number(get(r.stats,'rating.value',NaN))).filter(Number.isFinite);
- return vals.length?vals.filter(v=>v<6.5).length/vals.length:NaN;
+ return vals.length?vals.filter(v=>v<6.75).length/vals.length:NaN;
 }
 function stabilityRawScore(rows){
  const rate=lowRatingRate(rows);
@@ -557,7 +557,7 @@ const TRAIT_GOLD_NAMES={
 };
 const TRAIT_DESCRIPTIONS={
  '勝敗運':'引き分けを除いた試合での勝率。65以上は勝ち運、35以下は負け運。判定には引き分けを除いた10試合以上が必要。',
- '安定感○':'平均採点6.5以上を満たし、試合ごとの採点のブレが小さい。',
+ '安定感○':'採点が6.75以上の試合の割合が高いほど、安定感が高くなる。',
  '逆境○':'敗戦時でも平均採点が高く、チーム結果が悪い試合でも個人評価を保つ。',
  '決定力○':'FP全体で比較して、xGの高いシュートを外しにくい。',
  'チャンスメーカー':'FP全体で比較して、キーパス・アシストが多い。',

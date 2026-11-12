@@ -1,7 +1,7 @@
 import {renderShots} from './shot-insights.js?v=20261010shotcompact';
 import {passCutPatterns} from './pass-cut-patterns.mjs?v=20261010cuts';
 import {renderDuels} from './duel-insights.js?v=20261010direction';
-import {summarizeInsights,favorableOpponents} from './insights-engine.mjs?v=20261010cuts';
+import {summarizeInsights,favorableOpponents} from './insights-engine.mjs?v=20261108og';
 const $=id=>document.getElementById(id),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let matches=[];
 const link=name=>'<a href="player.html?id='+encodeURIComponent(name)+'">'+esc(name)+'</a>';
 function table(headers,rows){return '<div class="table-wrap"><table><thead><tr>'+headers.map(h=>'<th>'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(v=>'<td>'+v+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'+(rows.length?'':'<p>該当する記録はありません。</p>');}

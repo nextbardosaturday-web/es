@@ -229,9 +229,9 @@ function legacyTraitData(name,pos,p){
  out.push({name:'勝敗運',color:'luck',score:luck.score,eligible:luck.eligible});
  const ratings=legacyRatingRows(name,pos);
  {
-   // 安定感: 6.5未満に落ちる試合の割合を直接スコア化。
+   // 安定感: 6.75未満に落ちる試合の割合を直接スコア化。
    const eligible=ratings.length>=3;
-   const lowRate=eligible?ratings.filter(r=>r.rating<6.5).length/ratings.length:NaN;
+   const lowRate=eligible?ratings.filter(r=>r.rating<6.75).length/ratings.length:NaN;
    const rawScore=eligible?Math.max(0,Math.min(100,100-lowRate*100)):NaN;
    // 専用信頼度。3試合で0.70、10試合で0.90、20試合で1.00。
    let conf=0;
@@ -282,7 +282,7 @@ return out;
 }
 const LEGACY_GOLD={'勝敗運':'勝者','安定感○':'明鏡止水','逆境○':'鶏群の一鶴','ゲームメーカー':'マエストロ','ボールキープ○':'金剛不壊','デュエル○':'闘将','インターセプター':'未来予知'};
 const LEGACY_TRAIT_DESC={
- '勝敗運':'引き分けを除いた試合での勝率。65以上は勝ち運、35以下は負け運。','安定感○':'6.5未満の採点になる試合の割合が低く、低評価になりにくい。',
+ '勝敗運':'引き分けを除いた試合での勝率。65以上は勝ち運、35以下は負け運。','安定感○':'採点が6.75以上の試合の割合が高いほど、安定感が高くなる。',
  '逆境○':'敗戦時でも平均採点が高く、チーム結果が悪い試合でも個人評価を保つ。',
  'ゲームメーカー':'十分なパス試行があり、パス成功率も高い。',
  'ボールキープ○':'十分にボールへ関与し、パス・ドリブルによるロストが少ない。',

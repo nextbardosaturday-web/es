@@ -24,6 +24,7 @@ export function combinePositionStats(parts){
  }
  out.rating.context={situation:{details:parts.flatMap(p=>(p.stats.rating?.context?.situation?.details||[]).map(d=>({...d,position:p.position})))}};
  const positions=parts.filter(p=>p.stats.averagePosition?.samples);if(positions.length){const n=positions.reduce((s,p)=>s+p.stats.averagePosition.samples,0);out.averagePosition={samples:n};for(const k of ['x','z','normalizedX','normalizedZ','attackingNormalizedX','attackingNormalizedY']){const vs=positions.filter(p=>Number.isFinite(p.stats.averagePosition[k]));out.averagePosition[k]=vs.length?vs.reduce((s,p)=>s+p.stats.averagePosition[k]*p.stats.averagePosition.samples,0)/vs.reduce((s,p)=>s+p.stats.averagePosition.samples,0):null;}}
+ for(const k of ['goal','ownGoal','assist','save','keyPass','origin','total'])out.rating.context.situation[k]=Number(parts.reduce((n,p)=>n+(p.stats.rating?.context?.situation?.[k]||0),0).toFixed(3));
  if(out.chances)out.chances.averageScore=out.chances.shots?out.chances.totalScore/out.chances.shots:0;
  if(out.positionHeatmap){out.positionHeatmap.cols=parts[0].stats.positionHeatmap?.cols;out.positionHeatmap.rows=parts[0].stats.positionHeatmap?.rows;}
  if(out.fieldHeatmap){out.fieldHeatmap.cols=parts[0].stats.fieldHeatmap?.cols;out.fieldHeatmap.rows=parts[0].stats.fieldHeatmap?.rows;}
